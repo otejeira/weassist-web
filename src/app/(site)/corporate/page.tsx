@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { Check } from "lucide-react";
 import { useLocale } from "@/lib/i18n/LocaleProvider";
 import { CTAButton } from "@/components/ui/CTAButton";
@@ -23,6 +24,26 @@ const NETWORK_STATS = [
   { label: { es: "Países con red", en: "Countries with network" }, value: "+200" },
   { label: { es: "Países con presencia operativa", en: "Countries with operations" }, value: "21" },
   { label: { es: "Proveedores individuales", en: "Individual providers" }, value: "+1.5MM" },
+];
+
+// TODO PLACEHOLDER: agrupación de centros por región (referencia del mapa operativo).
+const REGIONS = [
+  {
+    name: { es: "Américas", en: "Americas" },
+    note: { es: "EE. UU., México, Panamá, Colombia, Brasil y más.", en: "USA, Mexico, Panama, Colombia, Brazil and more." },
+  },
+  {
+    name: { es: "Europa", en: "Europe" },
+    note: { es: "España, Portugal, Reino Unido, Alemania, Nórdicos, Italia.", en: "Spain, Portugal, UK, Germany, Nordics, Italy." },
+  },
+  {
+    name: { es: "Asia-Pacífico", en: "Asia-Pacific" },
+    note: { es: "Japón, Corea, China, Indonesia, Australia.", en: "Japan, Korea, China, Indonesia, Australia." },
+  },
+  {
+    name: { es: "Medio Oriente y África", en: "Middle East & Africa" },
+    note: { es: "Egipto, Golfo Pérsico, Nigeria.", en: "Egypt, Persian Gulf, Nigeria." },
+  },
 ];
 
 const ECOSYSTEM = [
@@ -158,8 +179,56 @@ export default function CorporatePage() {
         </div>
       </section>
 
+      {/* Mapa de centros de operación */}
+      <section id="centros" className="section-y bg-surface-100">
+        <div className="container-max">
+          <div className="max-w-3xl">
+            <p className="eyebrow">{t({ es: "Centros de operación", en: "Operation centers" })}</p>
+            <h2 className="h2 mt-3 text-ink-900">
+              {t({ es: "Presencia operativa en todo el mundo", en: "Operational presence worldwide" })}
+            </h2>
+            <p className="lead mt-3">
+              {t({
+                es: "Nuestra red de centros de contacto y proveedores coordina asistencia donde tus viajeros y equipos están — sin importar la zona horaria.",
+                en: "Our network of contact centers and providers coordinates assistance wherever your travelers and teams are — no matter the time zone.",
+              })}
+            </p>
+          </div>
+
+          {/* TODO PLACEHOLDER: guardar el mapa real en /public/assets/operations-map.png */}
+          <figure className="mt-8 overflow-hidden rounded-[24px] border border-black/[.07] bg-white p-4 shadow-card sm:p-8">
+            <Image
+              src="/assets/operations-map.png"
+              alt={t({
+                es: "Mapa mundial con los centros de operación de We Assist",
+                en: "World map showing We Assist operation centers",
+              })}
+              width={2000}
+              height={1180}
+              className="mx-auto h-auto w-full"
+            />
+          </figure>
+
+          <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {REGIONS.map((r) => (
+              <div key={r.name.es} className="rounded-[18px] border border-black/[.07] bg-white p-5">
+                <p className="font-display text-[15px] font-bold text-ink-900">{t(r.name)}</p>
+                <p className="mt-1.5 text-[13px] leading-relaxed text-ink-600">{t(r.note)}</p>
+              </div>
+            ))}
+          </div>
+
+          <p className="mt-6 text-[12px] text-ink-500">
+            {t({
+              es: "Ubicaciones ilustrativas. La cobertura efectiva depende del producto, país y proveedor.",
+              en: "Illustrative locations. Effective coverage depends on product, country and provider.",
+            })}
+          </p>
+        </div>
+      </section>
+
       {/* Ecosistema */}
-      <section className="section-y bg-surface-100">
+      <section className="section-y bg-white">
         <div className="container-max">
           <p className="eyebrow">{t({ es: "Ecosistema", en: "Ecosystem" })}</p>
           <h2 className="h2 mt-3 text-ink-900">{t({ es: "Un grupo, tres formas de asistir", en: "One group, three ways to assist" })}</h2>

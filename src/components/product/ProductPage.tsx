@@ -1,6 +1,7 @@
 import { ProductHero } from "@/components/product/ProductHero";
 import { TierCards } from "@/components/product/TierCards";
 import { DurationSelector } from "@/components/product/DurationSelector";
+import { AnnualPlans } from "@/components/product/AnnualPlans";
 import { AssistanceGrid } from "@/components/product/AssistanceGrid";
 import { HowToRequestSteps } from "@/components/product/HowToRequestSteps";
 import { WhatToExpect } from "@/components/product/WhatToExpect";
@@ -23,6 +24,12 @@ export function ProductPage({ slug }: { slug: ProductSlug }) {
       />
       {line.mode === "tiers" ? (
         <TierCards title={line.pricingTitle} subtitle={line.pricingSubtitle} />
+      ) : line.mode === "annual" && line.annualPlans ? (
+        <AnnualPlans
+          title={line.pricingTitle}
+          subtitle={line.pricingSubtitle}
+          data={line.annualPlans}
+        />
       ) : (
         <DurationSelector
           title={line.pricingTitle}

@@ -17,7 +17,7 @@ export function LineSelector({ active = "travel" }: { active?: LineOption["id"] 
         const isActive = opt.id === active;
         const label = t(opt.label);
         const cls = cn(
-          "rounded-full px-3 py-1 text-[12px] font-semibold transition-colors",
+          "whitespace-nowrap rounded-full px-3 py-1 text-[12px] font-semibold transition-colors",
           isActive ? "bg-navy-800 text-white" : "text-ink-600 hover:bg-surface-blue",
         );
         if (opt.external) {

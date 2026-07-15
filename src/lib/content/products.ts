@@ -19,16 +19,51 @@ export interface DurationOption {
   featured?: boolean;
 }
 
+/** Opción de duración del toggle anual (All-Ways): días máximos por salida. */
+export interface AnnualDuration {
+  /** Clave usada en la matriz de precios (p. ej. "30"). */
+  id: string;
+  /** Etiqueta corta del toggle (p. ej. "30 días"). */
+  label: Localized<string>;
+  featured?: boolean;
+}
+
+/** Nivel anual (Gold / Black / Diamond) con precio por duración. */
+export interface AnnualTier {
+  /** Nombre de marca — NO se traduce. */
+  name: string;
+  accent: string;
+  featured?: boolean;
+  badge?: Localized<string>;
+  /** Precio por viajero según la duración elegida (clave = AnnualDuration.id). */
+  prices: Record<string, number>;
+  /** 4 beneficios clave por persona. */
+  benefits: Localized<string>[];
+}
+
+/** Datos del bloque anual multiviaje (solo All-Ways). */
+export interface AnnualPlansData {
+  durations: AnnualDuration[];
+  tiers: AnnualTier[];
+}
+
 export interface ProductLine {
   slug: ProductSlug;
   eyebrow: Localized<string>;
   title: Localized<string>;
   subtitle: Localized<string>;
   href: string;
-  /** Modo de precio: "tiers" usa los 5 niveles (PLANS); "duration" usa duraciones. */
-  mode: "tiers" | "duration";
+  /**
+   * Modo de precio:
+   * - "tiers": los 5 niveles Travel (PLANS).
+   * - "duration": tarjetas de duración con precio fijo (Student / Long-Stay).
+   * - "annual": toggle de días + niveles con precio dinámico (All-Ways).
+   */
+  mode: "tiers" | "duration" | "annual";
   /** Solo para mode="duration". */
   durations?: DurationOption[];
+  /** Solo para mode="annual". */
+  annualPlans?: AnnualPlansData;
   /** Título de la sección de precios. */
   pricingTitle: Localized<string>;
   pricingSubtitle: Localized<string>;
@@ -60,12 +95,53 @@ export const PRODUCT_LINES: Record<ProductSlug, ProductLine> = {
       "A single annual multi-trip assistance: leave as many times as you want over 365 days, with nothing to activate and no one to notify. Buy once and travel all year.",
     ),
     href: ROUTES.allWays,
-    mode: "duration",
-    durations: [
-      { label: l("Hasta 30 días por viaje", "Up to 30 days per trip"), price: 150.0 },
-      { label: l("Hasta 60 días por viaje", "Up to 60 days per trip"), price: 250.0, featured: true },
-      { label: l("Hasta 90 días por viaje", "Up to 90 days per trip"), price: 355.0 },
-    ],
+    mode: "annual",
+    // TODO PLACEHOLDER: matriz de precios/coberturas de referencia. La columna de 30 días
+    // corresponde al sitio actual; 60/90 escalan como estimación hasta conectar el API.
+    annualPlans: {
+      durations: [
+        { id: "30", label: l("30 días", "30 days"), featured: true },
+        { id: "60", label: l("60 días", "60 days") },
+        { id: "90", label: l("90 días", "90 days") },
+      ],
+      tiers: [
+        {
+          name: "Gold",
+          accent: "#7cc249",
+          prices: { "30": 150.0, "60": 245.0, "90": 340.0 },
+          benefits: [
+            l("USD 35,000 asistencia médica (incluye Covid)", "USD 35,000 medical assistance (Covid included)"),
+            l("USD 700 preexistencias", "USD 700 pre-existing"),
+            l("USD 1,000 equipaje", "USD 1,000 baggage"),
+            l("USD 1,000 cancelación de viaje", "USD 1,000 trip cancellation"),
+          ],
+        },
+        {
+          name: "Black",
+          accent: "#10ade4",
+          prices: { "30": 250.0, "60": 405.0, "90": 560.0 },
+          benefits: [
+            l("USD 55,000 asistencia médica (incluye Covid)", "USD 55,000 medical assistance (Covid included)"),
+            l("USD 800 preexistencias", "USD 800 pre-existing"),
+            l("USD 1,200 equipaje", "USD 1,200 baggage"),
+            l("USD 1,500 cancelación de viaje", "USD 1,500 trip cancellation"),
+          ],
+        },
+        {
+          name: "Diamond",
+          accent: "#0a4a86",
+          featured: true,
+          badge: l("Más vendido", "Best seller"),
+          prices: { "30": 355.0, "60": 575.0, "90": 795.0 },
+          benefits: [
+            l("USD 100,000 asistencia médica (incluye Covid)", "USD 100,000 medical assistance (Covid included)"),
+            l("USD 1,000 preexistencias", "USD 1,000 pre-existing"),
+            l("USD 1,500 equipaje", "USD 1,500 baggage"),
+            l("USD 1,800 cancelación de viaje", "USD 1,800 trip cancellation"),
+          ],
+        },
+      ],
+    },
     pricingTitle: l("¿Cuánto durará tu viaje más largo del año?", "How long will your longest trip of the year be?"),
     pricingSubtitle: l(
       "Elige la duración máxima por salida y el precio se ajusta al instante. Viajes ilimitados durante 365 días, en todos.",

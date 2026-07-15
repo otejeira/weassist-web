@@ -1,10 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, MessageCircle } from "lucide-react";
 import { useLocale } from "@/lib/i18n/LocaleProvider";
 import { PRODUCT_MENU, ROUTES } from "@/lib/nav";
-import { HEALTHIER_URL } from "@/lib/constants";
+import { HEALTHIER_URL, SOFY_WHATSAPP_HREF } from "@/lib/constants";
 import { HexBadge } from "@/components/brand/HexWe";
 
 /**
@@ -40,19 +40,31 @@ export function MegaMenuProductos({ onNavigate }: { onNavigate: () => void }) {
           </Link>
         ))}
 
-        {/* 5ª celda: CTA navy */}
-        <Link
-          href={ROUTES.comprarPlanes}
+        {/* 5ª celda: CTA navy → Sofy (AI Agent) por WhatsApp */}
+        <a
+          href={SOFY_WHATSAPP_HREF}
+          target="_blank"
+          rel="noopener noreferrer"
           onClick={onNavigate}
           className="flex flex-col justify-between rounded-card bg-navy-950 p-4 text-white transition-transform hover:-translate-y-0.5"
         >
-          <span className="font-display text-[15px] font-bold">
-            {t({ es: "¿No sabes cuál elegir?", en: "Not sure which one?" })}
+          <span className="flex flex-col">
+            <span className="font-display text-[15px] font-bold">
+              {t({ es: "¿No sabes cuál elegir?", en: "Not sure which one?" })}
+            </span>
+            <span className="mt-1 text-[12px] text-white/70">
+              {t({
+                es: "Sofy, nuestra asistente con IA, te ayuda a elegir en segundos.",
+                en: "Sofy, our AI assistant, helps you choose in seconds.",
+              })}
+            </span>
           </span>
-          <span className="mt-2 inline-flex items-center gap-1 text-[13px] font-semibold text-cyan-500">
-            {t({ es: "Cotizar", en: "Get a quote" })} <ArrowRight className="h-4 w-4" />
+          <span className="mt-3 inline-flex items-center gap-1.5 rounded-control bg-green-500 px-3 py-2 text-[13px] font-semibold text-navy-950 transition-colors hover:bg-green-500/90">
+            <MessageCircle className="h-4 w-4" />
+            {t({ es: "Hablar con Sofy", en: "Chat with Sofy" })}
+            <ArrowRight className="h-4 w-4" />
           </span>
-        </Link>
+        </a>
       </div>
 
       <div className="mt-4 flex flex-wrap items-center justify-between gap-3 border-t border-black/[.06] pt-4 text-[13px]">

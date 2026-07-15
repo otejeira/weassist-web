@@ -27,6 +27,7 @@ export function Header({ activeLine }: { activeLine?: LineOption["id"] }) {
   const [megaOpen, setMegaOpen] = useState(false);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const megaRef = useRef<HTMLDivElement>(null);
+  const panelRef = useRef<HTMLDivElement>(null);
 
   const productsActive = PRODUCT_ROUTES.some((r) => pathname.startsWith(r));
   // Línea activa derivada de la ruta (Corporate/Business); Travel por defecto.
@@ -45,7 +46,10 @@ export function Header({ activeLine }: { activeLine?: LineOption["id"] }) {
       if (e.key === "Escape") setMegaOpen(false);
     }
     function onClick(e: MouseEvent) {
-      if (megaRef.current && !megaRef.current.contains(e.target as Node)) setMegaOpen(false);
+      const target = e.target as Node;
+      const inButton = megaRef.current?.contains(target);
+      const inPanel = panelRef.current?.contains(target);
+      if (!inButton && !inPanel) setMegaOpen(false);
     }
     document.addEventListener("keydown", onKey);
     document.addEventListener("mousedown", onClick);
@@ -63,8 +67,8 @@ export function Header({ activeLine }: { activeLine?: LineOption["id"] }) {
 
   return (
     <header className="sticky top-0 z-[60] border-b border-black/[.06] bg-white/95 backdrop-blur">
-      <div className="container-max flex items-center justify-between gap-4 py-3">
-        <Logo />
+      <div className="relative mx-auto flex w-full max-w-[1400px] items-center justify-between gap-6 px-5 py-3 sm:px-8 lg:px-10">
+        <Logo width={140} className="shrink-0" />
 
         {/* Nav desktop */}
         <nav aria-label="Principal" className="hidden items-center gap-1 lg:flex">
@@ -75,7 +79,7 @@ export function Header({ activeLine }: { activeLine?: LineOption["id"] }) {
               aria-haspopup="true"
               onClick={() => setMegaOpen((v) => !v)}
               className={cn(
-                "inline-flex items-center gap-1 rounded-control px-3 py-2 text-[14px] font-medium transition-colors",
+                "inline-flex items-center gap-1 whitespace-nowrap rounded-control px-3 py-2 text-[14px] font-medium transition-colors",
                 productsActive || megaOpen
                   ? "bg-surface-blue text-blue-700"
                   : "text-ink-600 hover:bg-surface-blue",
@@ -84,11 +88,6 @@ export function Header({ activeLine }: { activeLine?: LineOption["id"] }) {
               {t({ es: "Productos", en: "Products" })}
               <ChevronDown className={cn("h-4 w-4 transition-transform", megaOpen && "rotate-180")} />
             </button>
-            {megaOpen && (
-              <div className="absolute left-1/2 top-[calc(100%+10px)] w-[min(920px,90vw)] -translate-x-1/2">
-                <MegaMenuProductos onNavigate={() => setMegaOpen(false)} />
-              </div>
-            )}
           </div>
 
           {MAIN_NAV.map((item) => {
@@ -98,7 +97,7 @@ export function Header({ activeLine }: { activeLine?: LineOption["id"] }) {
                 key={item.href}
                 href={item.href}
                 className={cn(
-                  "rounded-control px-3 py-2 text-[14px] font-medium transition-colors",
+                  "whitespace-nowrap rounded-control px-3 py-2 text-[14px] font-medium transition-colors",
                   active ? "bg-surface-blue text-blue-700" : "text-ink-600 hover:bg-surface-blue",
                 )}
                 aria-current={active ? "page" : undefined}
@@ -115,10 +114,10 @@ export function Header({ activeLine }: { activeLine?: LineOption["id"] }) {
             <LineSelector active={line} />
           </div>
           <LanguageToggle />
-          <Link href={ROUTES.ingresar} className="text-[14px] font-medium text-ink-600 hover:text-blue-700">
+          <Link href={ROUTES.ingresar} className="whitespace-nowrap text-[14px] font-medium text-ink-600 hover:text-blue-700">
             {t({ es: "Ingresar", en: "Log in" })}
           </Link>
-          <CTAButton href={ROUTES.comprarPlanes} size="sm">
+          <CTAButton href={ROUTES.comprarPlanes} size="sm" className="whitespace-nowrap">
             {t({ es: "Cotiza tu plan →", en: "Get a quote →" })}
           </CTAButton>
         </div>
@@ -132,6 +131,16 @@ export function Header({ activeLine }: { activeLine?: LineOption["id"] }) {
         >
           <Menu className="h-6 w-6" />
         </button>
+
+        {/* Mega-menú Productos: centrado bajo el header (no bajo el botón) */}
+        {megaOpen && (
+          <div
+            ref={panelRef}
+            className="absolute left-1/2 top-full z-[65] mt-2 hidden w-[min(920px,92vw)] -translate-x-1/2 lg:block"
+          >
+            <MegaMenuProductos onNavigate={() => setMegaOpen(false)} />
+          </div>
+        )}
       </div>
 
       {/* Drawer móvil */}

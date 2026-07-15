@@ -9,6 +9,12 @@
 // TODO PLACEHOLDER: URL real de Assist Healthier.
 export const HEALTHIER_URL = "https://healthier.weassistgroup.com";
 
+// Sofy — AI Agent de We Assist en WhatsApp. Los CTA "hablar con Sofy" apuntan aquí.
+// TODO PLACEHOLDER: número real de WhatsApp de Sofy.
+export const SOFY_WHATSAPP_HREF =
+  "https://wa.me/5076XXXXXXX?text=" +
+  encodeURIComponent("Hola Sofy 👋 Ayúdame a elegir mi plan de asistencia de viaje.");
+
 // Contacto — TODO PLACEHOLDER: teléfonos, WhatsApp y dirección reales.
 export const CONTACT = {
   phone: "+507 6XXX-XXXX",
