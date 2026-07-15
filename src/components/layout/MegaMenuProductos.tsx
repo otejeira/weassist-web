@@ -68,21 +68,31 @@ export function MegaMenuProductos({ onNavigate }: { onNavigate: () => void }) {
       </div>
 
       <div className="mt-4 flex flex-wrap items-center justify-between gap-3 border-t border-black/[.06] pt-4 text-[13px]">
-        <Link
-          href={ROUTES.comprarComparar}
-          onClick={onNavigate}
-          className="inline-flex items-center gap-1 font-semibold text-blue-700 hover:text-cyan-500"
-        >
-          {t({ es: "Comparar todos los planes", en: "Compare all plans" })}
-          <ArrowRight className="h-4 w-4" />
-        </Link>
+        <div className="flex flex-wrap items-center gap-5">
+          <Link
+            href={ROUTES.comprarComparar}
+            onClick={onNavigate}
+            className="inline-flex items-center gap-1 font-semibold text-blue-700 hover:text-cyan-500"
+          >
+            {t({ es: "Comparar todos los planes", en: "Compare all plans" })}
+            <ArrowRight className="h-4 w-4" />
+          </Link>
+          <Link
+            href={ROUTES.mejoras}
+            onClick={onNavigate}
+            className="inline-flex items-center gap-1 font-semibold text-blue-700 hover:text-cyan-500"
+          >
+            {t({ es: "Ver upgrades", en: "See upgrades" })}
+            <ArrowRight className="h-4 w-4" />
+          </Link>
+        </div>
         <a
           href={HEALTHIER_URL}
           target="_blank"
           rel="noopener noreferrer"
           className="font-semibold text-[#004AAD]"
         >
-          {t({ es: "¿Salud fuera del viaje? Assist Healthier ↗", en: "Health beyond travel? Assist Healthier ↗" })}
+          {t({ es: "¿Salud fuera del viaje? Healthier ↗", en: "Health beyond travel? Healthier ↗" })}
         </a>
       </div>
     </div>

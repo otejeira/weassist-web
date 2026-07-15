@@ -27,6 +27,7 @@ export const FOOTER_COLUMNS: FooterColumn[] = [
       { label: l("Multiviajes Anual", "Annual multi-trip"), href: ROUTES.allWays },
       { label: l("Viajes Estudiantiles", "Student travel"), href: ROUTES.student },
       { label: l("Viajes de Larga Estadía", "Long-stay travel"), href: ROUTES.longStay },
+      { label: l("Upgrades", "Upgrades"), href: ROUTES.mejoras },
       { label: l("Comparar planes", "Compare plans"), href: ROUTES.comprarComparar },
     ],
   },
@@ -34,9 +35,9 @@ export const FOOTER_COLUMNS: FooterColumn[] = [
     title: l("Compañía", "Company"),
     links: [
       { label: l("Sobre nosotros", "About us"), href: ROUTES.corporate },
-      { label: l("Corporate", "Corporate"), href: ROUTES.corporate },
+      { label: l("Soluciones corporativas", "Corporate solutions"), href: ROUTES.empresas },
       { label: l("Business", "Business"), href: ROUTES.business },
-      { label: l("Assist Healthier ↗", "Assist Healthier ↗"), href: HEALTHIER_URL, external: true, tone: "cyan" },
+      { label: l("Healthier ↗", "Healthier ↗"), href: HEALTHIER_URL, external: true, tone: "cyan" },
       { label: l("Ingresar", "Log in"), href: ROUTES.ingresar },
     ],
   },
@@ -65,9 +66,9 @@ export const FOOTER_COLUMNS: FooterColumn[] = [
 const CORPORATE_COLUMN: FooterColumn = {
   title: l("Corporate", "Corporate"),
   links: [
-    { label: l("Programas para empresas", "Corporate programs"), href: ROUTES.corporate },
-    { label: l("Asistencia a colaboradores", "Employee assistance"), href: ROUTES.corporate },
-    { label: l("Cobertura global", "Global coverage"), href: ROUTES.corporate },
+    { label: l("Sobre nosotros", "About us"), href: ROUTES.corporate },
+    { label: l("Soluciones corporativas", "Corporate solutions"), href: ROUTES.empresas },
+    { label: l("Business (agentes y agencias)", "Business (agents & agencies)"), href: ROUTES.business },
     { label: l("Hablar con un asesor", "Talk to an advisor"), href: ROUTES.asistencia },
   ],
 };
@@ -85,7 +86,7 @@ const BUSINESS_COLUMN: FooterColumn = {
 
 /** Devuelve las columnas del footer sustituyendo Productos según la línea activa. */
 export function getFooterColumns(pathname: string): FooterColumn[] {
-  if (pathname.startsWith(ROUTES.corporate)) {
+  if (pathname.startsWith(ROUTES.corporate) || pathname.startsWith(ROUTES.empresas)) {
     return [CORPORATE_COLUMN, ...FOOTER_COLUMNS.slice(1)];
   }
   if (pathname.startsWith(ROUTES.business)) {

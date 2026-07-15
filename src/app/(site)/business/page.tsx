@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { Check } from "lucide-react";
+import { Check, Puzzle, ArrowRight } from "lucide-react";
 import { useLocale } from "@/lib/i18n/LocaleProvider";
 import { CTAButton } from "@/components/ui/CTAButton";
 import { Reveal } from "@/components/ui/Reveal";
@@ -214,6 +214,46 @@ export default function BusinessPage() {
           <p className="mt-10 text-center text-[12px] text-white/50">
             {t({ es: "Capturas ilustrativas del portal de agentes.", en: "Illustrative screenshots of the agent portal." })}
           </p>
+        </div>
+      </section>
+
+      {/* Programas a la medida — para brokers y agencias */}
+      <section className="section-y bg-white">
+        <div className="container-max">
+          <div className="grid items-center gap-8 rounded-[24px] border border-black/[.07] bg-surface-100 p-8 lg:grid-cols-[1.2fr_1fr] lg:p-10">
+            <div>
+              <div className="flex items-center gap-2 text-green-700">
+                <Puzzle className="h-4 w-4" aria-hidden="true" />
+                <p className="text-[12px] font-semibold uppercase tracking-wide">
+                  {t({ es: "Programas a la medida", en: "Custom-built programs" })}
+                </p>
+              </div>
+              <h2 className="h2 mt-2 text-ink-900">
+                {t({
+                  es: "¿Tus clientes necesitan un producto especial?",
+                  en: "Do your clients need a special product?",
+                })}
+              </h2>
+              <p className="lead mt-3 max-w-xl">
+                {t({
+                  es: "Muchos de nuestros brokers y agencias nos piden productos a la medida para sus clientes. Somos expertos en gestión de riesgo: desarrollamos el programa contigo, con el respaldo de nuestra red global.",
+                  en: "Many of our brokers and agencies ask us for tailored products for their clients. We're risk-management experts: we build the program with you, backed by our global network.",
+                })}
+              </p>
+            </div>
+            <div className="flex flex-col gap-3">
+              <CTAButton href={ROUTES.empresas} variant="outline">
+                {t({ es: "Ver soluciones corporativas", en: "See corporate solutions" })}
+                <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              </CTAButton>
+              <p className="text-[12.5px] leading-relaxed text-ink-500">
+                {t({
+                  es: "Desde programas de lealtad y beneficios hasta coberturas especiales — lo diseñamos según tu operación.",
+                  en: "From loyalty and benefit programs to special coverage — we design it around your operation.",
+                })}
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 

@@ -47,12 +47,28 @@ export interface AnnualPlansData {
   tiers: AnnualTier[];
 }
 
+/**
+ * Diferenciador específico del producto, contado en lenguaje humano con contraste
+ * explícito ("a diferencia de otras asistencias…"). Es el argumento de venta incopiable.
+ */
+export interface ProductDifferentiator {
+  /** Sello corto (p. ej. "Único en el mercado" / "Beneficio por evento"). */
+  eyebrow: Localized<string>;
+  title: Localized<string>;
+  /** Cómo funciona en el resto del mercado (lo apagado). */
+  others: Localized<string>;
+  /** Cómo funciona con We Assist (lo dominante). */
+  weassist: Localized<string>;
+}
+
 export interface ProductLine {
   slug: ProductSlug;
   eyebrow: Localized<string>;
   title: Localized<string>;
   subtitle: Localized<string>;
   href: string;
+  /** Diferenciador de venta específico (All-Ways, Student, Long-Stay). Travel no lleva. */
+  differentiator?: ProductDifferentiator;
   /**
    * Modo de precio:
    * - "tiers": los 5 niveles Travel (PLANS).
@@ -95,6 +111,21 @@ export const PRODUCT_LINES: Record<ProductSlug, ProductLine> = {
       "A single annual multi-trip assistance: leave as many times as you want over 365 days, with nothing to activate and no one to notify. Buy once and travel all year.",
     ),
     href: ROUTES.allWays,
+    differentiator: {
+      eyebrow: l("Único en el mercado", "Unique in the market"),
+      title: l(
+        "Cada viaje del año arranca con tu asistencia completa.",
+        "Every trip of the year starts with your full assistance.",
+      ),
+      others: l(
+        "Con otras asistencias multiviaje, lo que usas en un viaje se descuenta de tu monto anual: si lo usas en enero, llegas a diciembre con menos —o descubierto—.",
+        "With other multi-trip plans, whatever you use on one trip is deducted from your annual amount: use it in January and you reach December with less — or nothing.",
+      ),
+      weassist: l(
+        "Con We Assist All-Ways, cada viaje del año empieza con tu asistencia íntegra, sin importar si ya la usaste antes — y eso incluye la cancelación. Somos los únicos del mercado en ofrecerlo.",
+        "With We Assist All-Ways, every trip of the year starts with your full assistance, no matter if you already used it — and that includes cancellation. We're the only ones in the market who offer this.",
+      ),
+    },
     mode: "annual",
     // TODO PLACEHOLDER: matriz de precios/montos de asistencia de referencia. La columna de 30 días
     // corresponde al sitio actual; 60/90 escalan como estimación hasta conectar el API.
@@ -157,6 +188,21 @@ export const PRODUCT_LINES: Record<ProductSlug, ProductLine> = {
       "Continuous assistance from 3 to 12 months to study abroad, with the certificate visas and universities require — and a family kept informed of everything, instantly.",
     ),
     href: ROUTES.student,
+    differentiator: {
+      eyebrow: l("Beneficio por evento", "Per-event benefit"),
+      title: l(
+        "No hay una bolsa anual que se agote.",
+        "There's no annual pot that runs out.",
+      ),
+      others: l(
+        "En muchos planes estudiantiles, cada atención descuenta de un tope anual: si te enfermas en octubre, llegas a fin de curso con menos protección.",
+        "In many student plans, each visit is deducted from an annual cap: get sick in October and you finish the year with less protection.",
+      ),
+      weassist: l(
+        "Con We Assist, la asistencia médica por accidente y las condiciones no preexistentes son POR EVENTO: cada atención se atiende como si fuera la primera, durante todo tu programa.",
+        "With We Assist, medical assistance for accidents and non-pre-existing conditions are PER EVENT: each one is handled as if it were the first, throughout your whole program.",
+      ),
+    },
     mode: "duration",
     durations: [
       { label: l("Semestre (hasta 180 días)", "Semester (up to 180 days)"), price: 420.0, featured: true },
@@ -177,6 +223,21 @@ export const PRODUCT_LINES: Record<ProductSlug, ProductLine> = {
       "Remote work, long assignments, seasons away from home. Continuous assistance from 90 to 365 days, renewable from wherever you are.",
     ),
     href: ROUTES.longStay,
+    differentiator: {
+      eyebrow: l("Beneficio por evento", "Per-event benefit"),
+      title: l(
+        "Cada evento se atiende como el primero.",
+        "Each event is handled like the first.",
+      ),
+      others: l(
+        "Otros planes de larga estadía reparten un solo tope anual entre todo lo que te pase: mientras más lo usas, menos te queda para el resto del año.",
+        "Other long-stay plans split one annual cap across everything that happens: the more you use it, the less is left for the rest of the year.",
+      ),
+      weassist: l(
+        "Con We Assist Long Stay, la asistencia médica por accidente y las condiciones no preexistentes son POR EVENTO — sin una bolsa que se vacíe mientras estás afuera.",
+        "With We Assist Long Stay, medical assistance for accidents and non-pre-existing conditions are PER EVENT — with no pot that empties while you're away.",
+      ),
+    },
     mode: "duration",
     durations: [
       { label: l("90 días", "90 days"), price: 210.0 },

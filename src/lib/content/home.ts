@@ -181,7 +181,7 @@ export interface EcosystemCard {
 /** "El viaje es la puerta de entrada..." — 3 tarjetas de ecosistema (verbatim del prototipo). */
 export const ECOSYSTEM_CARDS: EcosystemCard[] = [
   {
-    title: l("We Assist Healthier"),
+    title: l("Healthier"),
     description: l("Salud mental, bienestar y acceso médico para empresas y sus equipos.", "Mental health, wellbeing and medical access for companies and their teams."),
     href: HEALTHIER_URL,
     accent: "#00C2FF",

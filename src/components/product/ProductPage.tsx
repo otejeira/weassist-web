@@ -7,6 +7,7 @@ import { HowToRequestSteps } from "@/components/product/HowToRequestSteps";
 import { WhatToExpect } from "@/components/product/WhatToExpect";
 import { CertsPartners } from "@/components/product/CertsPartners";
 import { FinalCTA } from "@/components/product/FinalCTA";
+import { DifferentiatorBanner } from "@/components/product/DifferentiatorBanner";
 import { ContrastBlock } from "@/components/brand/ContrastBlock";
 import { PRODUCT_LINES, type ProductSlug } from "@/lib/content/products";
 import { HOME_CASES, PRODUCT_CASE_INDEX } from "@/lib/content/home";
@@ -28,6 +29,7 @@ export function ProductPage({ slug }: { slug: ProductSlug }) {
         secondaryLabel={{ es: "Ver qué incluye", en: "See what's included" }}
         secondaryHref="#servicios"
       />
+      {line.differentiator && <DifferentiatorBanner data={line.differentiator} />}
       <AssistanceGrid />
       <ContrastBlock featuredCase={featuredCase} className="bg-surface-100" />
       <HowToRequestSteps />
