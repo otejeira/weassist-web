@@ -39,7 +39,10 @@
     @apply font-display font-bold text-[17px] leading-snug;
   }
   .eyebrow {
-    @apply font-semibold uppercase tracking-[0.14em] text-[11px] text-cyan-500;
+    @apply font-semibold uppercase tracking-[0.14em] text-[11px];
+    /* Teal oscuro AA-safe sobre fondos claros (≈5.6:1 en blanco). En heros
+       navy se sobreescribe con `text-cyan-500` para mantener el acento cian. */
+    color: #0a6f92;
   }
   .lead {
     @apply text-[15px] leading-relaxed text-ink-600 sm:text-[16.5px];
@@ -54,6 +57,21 @@
   .skip-link {
     @apply sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-control focus:bg-navy-950 focus:px-4 focus:py-2 focus:text-white;
   }
+
+  /* Reveal on scroll — entrada sobria (opacity + translateY). El componente
+     <Reveal> añade .is-visible al entrar en viewport. Ver reduce-motion abajo. */
+  .reveal {
+    opacity: 0;
+    transform: translateY(18px);
+    transition:
+      opacity 0.6s cubic-bezier(0.2, 0, 0, 1),
+      transform 0.6s cubic-bezier(0.2, 0, 0, 1);
+    will-change: opacity, transform;
+  }
+  .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 /* Respeta prefers-reduced-motion: pausa animaciones de marca (README §Interactions) */
@@ -65,5 +83,10 @@
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
     scroll-behavior: auto !important;
+  }
+  /* Sin animación de entrada: el contenido se muestra siempre */
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
   }
 }

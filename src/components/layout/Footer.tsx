@@ -67,11 +67,11 @@ export function Footer({ columns }: { columns?: FooterColumn[] }) {
               </span>
             ))}
           </div>
-          <p className="mt-5 fine-print max-w-3xl text-white/40">
+          <p className="mt-5 fine-print max-w-3xl text-white/60">
             {COMPANY.legalName} · {COMPANY.ruc} · {COMPANY.address}. Texto legal de referencia —
             reemplazar por el contenido vigente.
           </p>
-          <p className="mt-2 text-[11px] text-white/40">© {COMPANY.year} We Assist. Todos los derechos reservados.</p>
+          <p className="mt-2 text-[11px] text-white/60">© {COMPANY.year} We Assist. Todos los derechos reservados.</p>
         </div>
       </div>
     </footer>

@@ -97,7 +97,13 @@ export function Header({ activeLine }: { activeLine?: LineOption["id"] }) {
   }, [pathname]);
 
   return (
-    <header className="sticky top-0 z-[60] border-b border-black/[.06] bg-white/95 backdrop-blur">
+    <header
+      className={cn(
+        "sticky top-0 z-[60] border-b border-black/[.06] backdrop-blur-md backdrop-saturate-150 transition-shadow duration-300",
+        "bg-white/80 supports-[backdrop-filter]:bg-white/70",
+        scrolled ? "shadow-card" : "shadow-none",
+      )}
+    >
       {/* Barra superior utilitaria (solo desktop): claim + selector de línea + idioma.
           Se colapsa al hacer scroll para compactar el header. */}
       <div

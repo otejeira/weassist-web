@@ -1,21 +1,23 @@
 import type { Metadata } from "next";
-import { Inter, Poppins } from "next/font/google";
+import { Inter, Montserrat } from "next/font/google";
 import "./globals.css";
 import { LocaleProvider } from "@/lib/i18n/LocaleProvider";
 import { QuoteProvider } from "@/lib/quote/QuoteProvider";
 import { ToastProvider } from "@/components/ui/Toast";
 
-const poppins = Poppins({
+// Tipografía institucional del brandbook (Montserrat display) + coherencia con
+// el ecosistema (healthier.weassistgroup.com también usa Montserrat).
+const montserrat = Montserrat({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700", "800"],
-  variable: "--font-poppins",
+  variable: "--font-display",
   display: "swap",
 });
 
 const inter = Inter({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
-  variable: "--font-inter",
+  variable: "--font-body",
   display: "swap",
 });
 
@@ -30,7 +32,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="es" className={`${poppins.variable} ${inter.variable}`}>
+    <html lang="es" className={`${montserrat.variable} ${inter.variable}`}>
       <body>
         <LocaleProvider>
           <ToastProvider>

@@ -3,6 +3,7 @@
 import { useLocale } from "@/lib/i18n/LocaleProvider";
 import type { Localized } from "@/lib/i18n/locale";
 import { CTAButton } from "@/components/ui/CTAButton";
+import { PhotoSlot } from "@/components/ui/PhotoSlot";
 import { ROUTES } from "@/lib/nav";
 
 /**
@@ -45,20 +46,32 @@ export function ProductHero({
           className="animate-dashMove"
         />
       </svg>
-      <div className="container-max relative py-16 lg:py-20">
-        <p className="eyebrow">{t(eyebrow)}</p>
-        <h1 className="h1-hero mt-3 max-w-3xl">{t(title)}</h1>
-        <p className="lead mt-4 max-w-2xl text-white/70">{t(subtitle)}</p>
-        <div className="mt-7 flex flex-wrap gap-3">
-          <CTAButton href={ROUTES.comprarPlanes}>
-            {primaryLabel ? t(primaryLabel) : t({ es: "Cotizar ahora →", en: "Get a quote →" })}
-          </CTAButton>
-          {secondaryLabel && (
-            <CTAButton href={secondaryHref ?? ROUTES.beneficios} variant="outlineWhite">
-              {t(secondaryLabel)}
+      <div className="container-max relative grid items-center gap-10 py-16 lg:grid-cols-2 lg:py-20">
+        <div>
+          <p className="eyebrow text-cyan-500">{t(eyebrow)}</p>
+          <h1 className="h1-hero mt-3 max-w-2xl">{t(title)}</h1>
+          <p className="lead mt-4 max-w-xl text-white/70">{t(subtitle)}</p>
+          <div className="mt-7 flex flex-wrap gap-3">
+            <CTAButton href={ROUTES.comprarPlanes}>
+              {primaryLabel ? t(primaryLabel) : t({ es: "Cotizar ahora →", en: "Get a quote →" })}
             </CTAButton>
-          )}
+            {secondaryLabel && (
+              <CTAButton href={secondaryHref ?? ROUTES.beneficios} variant="outlineWhite">
+                {t(secondaryLabel)}
+              </CTAButton>
+            )}
+          </div>
         </div>
+        <PhotoSlot
+          tone="dark"
+          ratio="4/3"
+          className="hidden lg:flex"
+          subject={t({ es: "Viajero real en su destino", en: "Real traveler at their destination" })}
+          direction={t({
+            es: "Primer plano cálido de una persona asistida durante su viaje. El cian entra como luz sobre el navy. Rostro genuino, nada de stock corporativo.",
+            en: "Warm close-up of a person being assisted on their trip. Cyan as light over navy. Genuine face, no corporate stock.",
+          })}
+        />
       </div>
     </section>
   );

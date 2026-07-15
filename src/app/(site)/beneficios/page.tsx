@@ -3,6 +3,7 @@
 import { useLocale } from "@/lib/i18n/LocaleProvider";
 import { ProductHero } from "@/components/product/ProductHero";
 import { CTAButton } from "@/components/ui/CTAButton";
+import { Reveal } from "@/components/ui/Reveal";
 import { ROUTES } from "@/lib/nav";
 import { BENEFITS, BENEFITS_FOOTNOTE, BENEFIT_DIFFERENCE } from "@/lib/content/benefits";
 import { cn } from "@/lib/cn";
@@ -23,7 +24,7 @@ export default function BeneficiosPage() {
       {/* Grid de 9 beneficios numerados */}
       <section className="section-y bg-white">
         <div className="container-max">
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <Reveal className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {BENEFITS.map((benefit) => {
               const featured = benefit.number === "09";
               return (
@@ -51,8 +52,8 @@ export default function BeneficiosPage() {
                 </div>
               );
             })}
-          </div>
-          <p className="mt-4 text-[11.5px] text-ink-300">{t(BENEFITS_FOOTNOTE)}</p>
+          </Reveal>
+          <p className="mt-4 text-[11.5px] text-ink-500">{t(BENEFITS_FOOTNOTE)}</p>
         </div>
       </section>
 
@@ -69,14 +70,14 @@ export default function BeneficiosPage() {
               en: "We Assist focuses on solving, not leaving you alone with a reimbursement form.",
             })}
           </p>
-          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <Reveal className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {BENEFIT_DIFFERENCE.map((item) => (
               <div key={item.title.es} className="rounded-card border border-black/[.07] bg-white p-6">
                 <h3 className="font-display text-[15.5px] font-bold text-navy-900">{t(item.title)}</h3>
                 <p className="mt-2 text-[13px] leading-relaxed text-ink-600">{t(item.description)}</p>
               </div>
             ))}
-          </div>
+          </Reveal>
 
           {/* CTA card */}
           <div className="mt-11 flex flex-col items-start justify-between gap-8 overflow-hidden rounded-[24px] bg-hero-navy p-10 text-white lg:flex-row lg:items-center">

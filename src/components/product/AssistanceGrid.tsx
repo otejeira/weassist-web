@@ -5,6 +5,7 @@ import { ASSISTANCE_GRID } from "@/lib/content/product-template";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Icon } from "@/components/ui/Icon";
 import { HexShape } from "@/components/brand/HexWe";
+import { Reveal } from "@/components/ui/Reveal";
 
 /** "¿Cómo funcionan las asistencias We Assist®?" — grid 3×2 con hexágonos outline cian. */
 export function AssistanceGrid() {
@@ -21,7 +22,7 @@ export function AssistanceGrid() {
             en: "Truly omnichannel: by phone, WhatsApp or video call, we're here for you 24/7/365. No schedules, no borders.",
           })}
         />
-        <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <Reveal className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {ASSISTANCE_GRID.map((card) => (
             <div
               key={card.title.es}
@@ -34,7 +35,7 @@ export function AssistanceGrid() {
               <p className="mt-2 text-[14px] leading-relaxed text-ink-600">{t(card.description)}</p>
             </div>
           ))}
-        </div>
+        </Reveal>
       </div>
     </section>
   );

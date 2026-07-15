@@ -10,6 +10,8 @@ import { Icon } from "@/components/ui/Icon";
 import { Accordion } from "@/components/ui/Accordion";
 import { FinalCTA } from "@/components/product/FinalCTA";
 import { CTAButton } from "@/components/ui/CTAButton";
+import { PhotoSlot } from "@/components/ui/PhotoSlot";
+import { Reveal } from "@/components/ui/Reveal";
 import { AlliancesMarquee } from "@/components/layout/AlliancesMarquee";
 import { ContrastBlock } from "@/components/brand/ContrastBlock";
 import {
@@ -52,7 +54,7 @@ export default function HomePage() {
         </svg>
         <div className="container-max relative grid gap-10 py-16 lg:grid-cols-2 lg:items-center lg:py-20">
           <div>
-            <p className="eyebrow">The Assistance Company</p>
+            <p className="eyebrow text-cyan-500">The Assistance Company</p>
             <h1 className="h1-hero mt-3">
               {t({ es: "Aquí cuando ", en: "Here when it " })}
               <span className="text-green-500">{t({ es: "importa", en: "matters" })}</span>.
@@ -115,25 +117,33 @@ export default function HomePage() {
             })}
           />
           <div className="mt-10 grid gap-4 md:grid-cols-3">
-            {HOME_CASES.map((item) => (
-              <article
+            {HOME_CASES.map((item, i) => (
+              <Reveal
                 key={item.badge.es}
-                className="flex flex-col rounded-card border border-white/10 bg-white/[.05] p-7 transition-all hover:-translate-y-1 hover:bg-white/[.09]"
+                delay={i * 90}
+                className="flex flex-col rounded-card border border-white/10 bg-white/[.05] p-5 transition-all hover:-translate-y-1 hover:bg-white/[.09]"
               >
-                <p className="text-[11px] font-bold uppercase tracking-wide" style={{ color: item.accent }}>
+                <PhotoSlot
+                  tone="dark"
+                  ratio="16/9"
+                  className="mb-5"
+                  subject={t({ es: "Rostro del cliente asistido", en: "Portrait of the assisted client" })}
+                  direction={t(item.badge)}
+                />
+                <p className="px-2 text-[11px] font-bold uppercase tracking-wide" style={{ color: item.accent }}>
                   {t(item.badge)}
                 </p>
-                <h3 className="mt-3.5 font-display text-[19px] font-bold leading-snug text-white">
+                <h3 className="mt-3.5 px-2 font-display text-[19px] font-bold leading-snug text-white">
                   {t(item.title)}
                 </h3>
-                <p className="mt-3.5 flex-1 text-[13.5px] leading-relaxed text-white/70">{t(item.description)}</p>
-                <div className="mt-3.5 flex items-baseline gap-2 border-t border-white/10 pt-3.5">
+                <p className="mt-3.5 flex-1 px-2 text-[13.5px] leading-relaxed text-white/70">{t(item.description)}</p>
+                <div className="mx-2 mt-3.5 flex items-baseline gap-2 border-t border-white/10 pt-3.5">
                   <span className="font-display text-[24px] font-extrabold" style={{ color: item.accent }}>
                     {t(item.outcomeStrong)}
                   </span>
                   <span className="text-[12.5px] text-white/65">{t(item.outcomeText)}</span>
                 </div>
-              </article>
+              </Reveal>
             ))}
           </div>
           <p className="mt-6 text-[14px] text-white/60">
@@ -161,11 +171,11 @@ export default function HomePage() {
                 })}
               </p>
             </div>
-            <Link href={ROUTES.beneficios} className="pb-1.5 text-[14px] font-semibold text-cyan-500 hover:text-blue-700">
+            <Link href={ROUTES.beneficios} className="pb-1.5 text-[14px] font-semibold text-blue-700 hover:underline">
               {t({ es: "Ver todos los planes →", en: "See all plans →" })}
             </Link>
           </div>
-          <div className="mt-9 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <Reveal className="mt-9 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {HOME_PLANS.map((plan, i) => {
               const isBlue = hoveredPlan === null ? plan.featured : hoveredPlan === i;
               return (
@@ -182,7 +192,7 @@ export default function HomePage() {
                   )}
                 >
                   {plan.badge ? (
-                    <span className="absolute right-3.5 top-3.5 rounded-full bg-green-500 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide text-white">
+                    <span className="absolute right-3.5 top-3.5 rounded-full bg-green-700 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide text-white">
                       {t(plan.badge)}
                     </span>
                   ) : null}
@@ -209,8 +219,8 @@ export default function HomePage() {
                 </Link>
               );
             })}
-          </div>
-          <p className="mt-4 text-[11.5px] text-ink-300">
+          </Reveal>
+          <p className="mt-4 text-[11.5px] text-ink-500">
             {t({
               es: 'Precios mostrados "desde", de carácter ilustrativo. Beneficios y límites sujetos a las condiciones generales de cada plan.',
               en: 'Prices shown "from" are illustrative. Benefits and limits are subject to each plan\'s general conditions.',
@@ -275,11 +285,11 @@ export default function HomePage() {
                 })}
               </p>
             </div>
-            <Link href={ROUTES.beneficios} className="pb-1.5 text-[14px] font-semibold text-cyan-500 hover:text-blue-700">
+            <Link href={ROUTES.beneficios} className="pb-1.5 text-[14px] font-semibold text-blue-700 hover:underline">
               {t({ es: "Ver todos los beneficios →", en: "See all benefits →" })}
             </Link>
           </div>
-          <div className="mt-9 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <Reveal className="mt-9 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {HOME_BENEFITS.map((item) => (
               <div
                 key={item.title.es}
@@ -290,7 +300,7 @@ export default function HomePage() {
                 <p className="text-[13px] leading-relaxed text-ink-600">{t(item.description)}</p>
               </div>
             ))}
-          </div>
+          </Reveal>
         </div>
       </section>
 
@@ -320,11 +330,11 @@ export default function HomePage() {
                 className="group flex flex-col gap-2.5 rounded-card border border-black/[.07] border-t-[3px] bg-white p-6 shadow-card transition-all hover:-translate-y-1 hover:shadow-glow"
                 style={{ borderTopColor: card.accent }}
               >
-                <h3 className="font-display text-[17px] font-bold" style={{ color: card.accent }}>
+                <h3 className="font-display text-[17px] font-bold" style={{ color: card.textAccent }}>
                   {t(card.title)}
                 </h3>
                 <p className="flex-1 text-[13.5px] leading-relaxed text-ink-600">{t(card.description)}</p>
-                <span className="text-[13.5px] font-semibold" style={{ color: card.accent }}>
+                <span className="text-[13.5px] font-semibold" style={{ color: card.textAccent }}>
                   {t({ es: "Explorar →", en: "Explore →" })}
                 </span>
               </Link>
@@ -358,7 +368,7 @@ export default function HomePage() {
                 en: "No technical jargon. No fine print. What you see is what you get.",
               })}
             </p>
-            <Link href={ROUTES.preguntas} className="mt-5 inline-block text-[14px] font-semibold text-cyan-500 hover:text-blue-700">
+            <Link href={ROUTES.preguntas} className="mt-5 inline-block text-[14px] font-semibold text-blue-700 hover:underline">
               {t({ es: "Ver todas las preguntas →", en: "See all questions →" })}
             </Link>
           </div>

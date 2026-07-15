@@ -3,6 +3,7 @@
 import { useLocale } from "@/lib/i18n/LocaleProvider";
 import { ProductHero } from "@/components/product/ProductHero";
 import { CTAButton } from "@/components/ui/CTAButton";
+import { Reveal } from "@/components/ui/Reveal";
 import { ROUTES } from "@/lib/nav";
 import { cn } from "@/lib/cn";
 
@@ -27,7 +28,7 @@ const BUY_STEPS = [
   },
   {
     number: "03",
-    accent: "#7cc249",
+    accent: "#3e7d1c",
     title: { es: "Compra en minutos", en: "Buy in minutes" },
     description: {
       es: "Paga en línea y recibe tu voucher digital con los canales de asistencia listos para viajar.",
@@ -107,7 +108,7 @@ export default function ComoFuncionaPage() {
           <h2 className="h2 mt-3 text-ink-900">
             {t({ es: "Compra tu asistencia en 3 pasos", en: "Buy your assistance in 3 steps" })}
           </h2>
-          <div className="relative mt-12">
+          <Reveal className="relative mt-12">
             <svg
               aria-hidden="true"
               viewBox="0 0 1120 60"
@@ -139,7 +140,7 @@ export default function ComoFuncionaPage() {
                 </div>
               ))}
             </div>
-          </div>
+          </Reveal>
         </div>
       </section>
 
@@ -175,7 +176,7 @@ export default function ComoFuncionaPage() {
           <div>
             <p className="eyebrow">{t({ es: "Casos reales", en: "Real cases" })}</p>
             <h3 className="mt-3 font-display text-[24px] font-bold text-ink-900">{t({ es: "¿Qué pasa si…?", en: "What if…?" })}</h3>
-            <div className="mt-5 flex flex-col gap-3">
+            <Reveal className="mt-5 flex flex-col gap-3">
               {CASES.map((c) => (
                 <div
                   key={c.title.es}
@@ -183,11 +184,11 @@ export default function ComoFuncionaPage() {
                 >
                   <p className="font-display text-[15px] font-semibold text-navy-900">{t(c.title)}</p>
                   <p className="mt-2 text-[13.5px] leading-relaxed text-ink-600">
-                    <span className="font-bold text-green-500">→</span> {t(c.answer)}
+                    <span className="font-bold text-green-700">→</span> {t(c.answer)}
                   </p>
                 </div>
               ))}
-            </div>
+            </Reveal>
           </div>
         </div>
       </section>

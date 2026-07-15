@@ -3,13 +3,14 @@
 import { useLocale } from "@/lib/i18n/LocaleProvider";
 import { CERTS } from "@/lib/constants";
 import { Chip } from "@/components/ui/Chip";
+import { Reveal } from "@/components/ui/Reveal";
 
 /** "Certificaciones y partners" — chips. */
 export function CertsPartners() {
   const { t } = useLocale();
   return (
     <section className="section-y">
-      <div className="container-max text-center">
+      <Reveal className="container-max text-center">
         <p className="eyebrow">{t({ es: "Respaldo", en: "Backed by" })}</p>
         <h2 className="h2 mt-2">{t({ es: "Certificaciones y partners", en: "Certifications & partners" })}</h2>
         <p className="lead mx-auto mt-3 max-w-2xl">
@@ -25,7 +26,7 @@ export function CertsPartners() {
             </Chip>
           ))}
         </div>
-      </div>
+      </Reveal>
     </section>
   );
 }

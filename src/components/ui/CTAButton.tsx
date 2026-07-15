@@ -14,9 +14,10 @@ const sizes: Record<CTASize, string> = {
 };
 
 const variants: Record<CTAVariant, string> = {
-  // Primario con slider de color animado (README §2)
+  // Primario: gradiente estático en reposo; el slider de color animado corre SOLO
+  // en hover (no en loop perpetuo, para no competir con la atención en el funnel).
   primary:
-    "text-white bg-cta-slide bg-[length:220%_100%] animate-ctaSlide shadow-card hover:-translate-y-0.5 hover:shadow-glow",
+    "text-white bg-cta-slide bg-[length:220%_100%] bg-[position:100%_0] shadow-card transition-transform duration-200 ease-brand hover:animate-ctaSlide hover:-translate-y-0.5 hover:shadow-glow",
   outline:
     "border border-blue-700 text-blue-700 bg-transparent hover:bg-surface-blue",
   outlineWhite:

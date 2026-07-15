@@ -51,7 +51,7 @@ export default function PreguntasPage() {
           />
         </svg>
         <div className="container-max relative py-16 text-center lg:py-20">
-          <p className="eyebrow">{t({ es: "Centro de ayuda", en: "Help center" })}</p>
+          <p className="eyebrow text-cyan-500">{t({ es: "Centro de ayuda", en: "Help center" })}</p>
           <h1 className="h1-hero mx-auto mt-3 max-w-2xl">{t({ es: "Preguntas frecuentes", en: "Frequently asked questions" })}</h1>
           <p className="lead mx-auto mt-4 max-w-xl text-white/70">
             {t({

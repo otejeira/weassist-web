@@ -4,6 +4,7 @@ import Image from "next/image";
 import { Check } from "lucide-react";
 import { useLocale } from "@/lib/i18n/LocaleProvider";
 import { CTAButton } from "@/components/ui/CTAButton";
+import { Reveal } from "@/components/ui/Reveal";
 import { ROUTES } from "@/lib/nav";
 import { cn } from "@/lib/cn";
 
@@ -80,7 +81,7 @@ const PLATFORM_SHOTS = [
 const STEPS = [
   { number: "01", accent: "#003366", title: { es: "Regístrate", en: "Sign up" }, description: { es: "Solicita tu acceso y valida tu perfil comercial con nuestro equipo.", en: "Request access and validate your commercial profile with our team." } },
   { number: "02", accent: "#003366", title: { es: "Activa el portal", en: "Activate the portal" }, description: { es: "Recibe credenciales y configura tu operación en minutos.", en: "Receive credentials and set up your operation in minutes." } },
-  { number: "03", accent: "#7cc249", title: { es: "Empieza a vender", en: "Start selling" }, description: { es: "Cotiza, emite y gestiona clientes con soporte dedicado.", en: "Quote, issue and manage clients with dedicated support." } },
+  { number: "03", accent: "#3e7d1c", title: { es: "Empieza a vender", en: "Start selling" }, description: { es: "Cotiza, emite y gestiona clientes con soporte dedicado.", en: "Quote, issue and manage clients with dedicated support." } },
 ];
 
 export default function BusinessPage() {
@@ -108,7 +109,7 @@ export default function BusinessPage() {
         </svg>
         <div className="container-max relative grid gap-14 py-16 lg:grid-cols-[1.1fr_.9fr] lg:items-center lg:py-20">
           <div>
-            <p className="eyebrow">{t({ es: "We Assist Business", en: "We Assist Business" })}</p>
+            <p className="eyebrow text-cyan-500">{t({ es: "We Assist Business", en: "We Assist Business" })}</p>
             <h1 className="h1-hero mt-4">
               {t({ es: "Vende y gestiona asistencia desde una sola plataforma", en: "Sell and manage assistance from a single platform" })}
             </h1>
@@ -153,7 +154,7 @@ export default function BusinessPage() {
               en: "A tool designed to accelerate your commercial operation from start to finish.",
             })}
           </p>
-          <div className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          <Reveal className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             {FEATURES.map((f) => (
               <div
                 key={f.title.es}
@@ -163,7 +164,7 @@ export default function BusinessPage() {
                 <p className="mt-2 text-[13px] leading-relaxed text-ink-600">{t(f.description)}</p>
               </div>
             ))}
-          </div>
+          </Reveal>
         </div>
       </section>
 
@@ -171,7 +172,7 @@ export default function BusinessPage() {
       <section className="section-y overflow-hidden bg-navy-950 text-white">
         <div className="container-max">
           <div className="max-w-2xl">
-            <p className="eyebrow">{t({ es: "Por dentro", en: "Inside" })}</p>
+            <p className="eyebrow text-cyan-500">{t({ es: "Por dentro", en: "Inside" })}</p>
             <h2 className="h2 mt-3 text-white">{t({ es: "Un vistazo a tu portal de agente", en: "A glimpse of your agent portal" })}</h2>
             <p className="lead mt-3 text-white/70">
               {t({
@@ -260,7 +261,7 @@ export default function BusinessPage() {
           <div className="mt-14">
             <p className="eyebrow">{t({ es: "Empezar", en: "Get started" })}</p>
             <h2 className="h2 mt-3 text-ink-900">{t({ es: "Comienza en 3 pasos", en: "Start in 3 steps" })}</h2>
-            <div className="relative mt-10">
+            <Reveal className="relative mt-10">
               <svg
                 aria-hidden="true"
                 viewBox="0 0 1120 60"
@@ -292,7 +293,7 @@ export default function BusinessPage() {
                   </div>
                 ))}
               </div>
-            </div>
+            </Reveal>
           </div>
 
           {/* CTA */}

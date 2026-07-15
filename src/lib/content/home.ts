@@ -161,7 +161,7 @@ export const HOME_STEPS: HomeStep[] = [
   },
   {
     number: "03",
-    accent: "#7cc249",
+    accent: "#3e7d1c",
     title: l("Compra en minutos", "Buy in minutes"),
     description: l("Recibe tu voucher digital y los canales de asistencia listos para viajar.", "Get your digital voucher and assistance channels ready to travel."),
   },
@@ -171,7 +171,10 @@ export interface EcosystemCard {
   title: Localized<string>;
   description: Localized<string>;
   href: string;
+  /** Color vivo para el borde superior decorativo. */
   accent: string;
+  /** Variante oscura AA-safe del acento para el texto (título + enlace). */
+  textAccent: string;
   external?: boolean;
 }
 
@@ -182,6 +185,7 @@ export const ECOSYSTEM_CARDS: EcosystemCard[] = [
     description: l("Salud mental, bienestar y acceso médico para empresas y sus equipos.", "Mental health, wellbeing and medical access for companies and their teams."),
     href: HEALTHIER_URL,
     accent: "#00C2FF",
+    textAccent: "#004AAD",
     external: true,
   },
   {
@@ -189,12 +193,14 @@ export const ECOSYSTEM_CARDS: EcosystemCard[] = [
     description: l("La compañía, la red global y los beneficios corporativos.", "The company, the global network and corporate benefits."),
     href: ROUTES.corporate,
     accent: "#10ade4",
+    textAccent: "#0a4a86",
   },
   {
     title: l("We Assist Business"),
     description: l("El aliado que sí aparece: plataforma para agentes, agencias y corredores.", "The ally that shows up: a platform for agents, agencies and brokers."),
     href: ROUTES.business,
     accent: "#7cc249",
+    textAccent: "#3e7d1c",
   },
 ];
 

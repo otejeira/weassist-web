@@ -84,7 +84,7 @@ export default function ConfirmacionPage() {
         >
           {t({ es: "Volver al inicio", en: "Back to home" })}
         </Link>
-        <BrandSeal />
+        <BrandSeal tone="light" />
       </div>
     </div>
   );

@@ -7,6 +7,7 @@ import { PLANS } from "@/lib/plans";
 import { formatPrice } from "@/lib/pricing";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { CTAButton } from "@/components/ui/CTAButton";
+import { Reveal } from "@/components/ui/Reveal";
 import { ROUTES } from "@/lib/nav";
 import { cn } from "@/lib/cn";
 
@@ -32,7 +33,7 @@ export function TierCards({
           title={t(title)}
           description={t(subtitle)}
         />
-        <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+        <Reveal className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
           {PLANS.map((plan) => (
             <div
               key={plan.id}
@@ -44,7 +45,7 @@ export function TierCards({
               )}
             >
               {plan.badge && (
-                <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-green-500 px-3 py-1 text-[11px] font-bold uppercase tracking-wide text-white">
+                <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-green-700 px-3 py-1 text-[11px] font-bold uppercase tracking-wide text-white">
                   {t(plan.badge)}
                 </span>
               )}
@@ -79,7 +80,7 @@ export function TierCards({
               </CTAButton>
             </div>
           ))}
-        </div>
+        </Reveal>
         <p className="mt-6 text-center text-[12px] text-ink-500">
           {t({
             es: "Precios de referencia por viajero para 5 días. El total real se calcula al cotizar.",

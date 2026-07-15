@@ -8,6 +8,7 @@ import type { AnnualPlansData } from "@/lib/content/products";
 import { formatPrice } from "@/lib/pricing";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { CTAButton } from "@/components/ui/CTAButton";
+import { Reveal } from "@/components/ui/Reveal";
 import { ROUTES } from "@/lib/nav";
 import { cn } from "@/lib/cn";
 
@@ -60,7 +61,7 @@ export function AnnualPlans({
                   className={cn(
                     "whitespace-nowrap rounded-full px-6 py-2.5 text-[14px] font-semibold transition-colors",
                     isActive
-                      ? "bg-cyan-500 text-white shadow-glow"
+                      ? "bg-cyan-500 text-navy-950 shadow-glow"
                       : "text-ink-600 hover:bg-surface-blue",
                   )}
                 >
@@ -72,7 +73,7 @@ export function AnnualPlans({
         </div>
 
         {/* Tarjetas de nivel — precio dinámico según la duración */}
-        <div className="mt-10 grid items-start gap-5 lg:grid-cols-3">
+        <Reveal className="mt-10 grid items-start gap-5 lg:grid-cols-3">
           {data.tiers.map((tier) => (
             <div
               key={tier.name}
@@ -84,7 +85,7 @@ export function AnnualPlans({
               )}
             >
               {tier.badge && (
-                <span className="absolute right-4 top-4 z-10 rounded-full bg-green-500 px-3 py-1 text-[11px] font-bold uppercase tracking-wide text-white">
+                <span className="absolute right-4 top-4 z-10 rounded-full bg-green-700 px-3 py-1 text-[11px] font-bold uppercase tracking-wide text-white">
                   {t(tier.badge)}
                 </span>
               )}
@@ -139,7 +140,7 @@ export function AnnualPlans({
               </div>
             </div>
           ))}
-        </div>
+        </Reveal>
 
         <p className="mt-6 text-center text-[12px] text-ink-500">
           {t({

@@ -60,7 +60,7 @@ export default function AsistenciaPage() {
           />
         </svg>
         <div className="container-max relative py-16 text-center">
-          <p className="eyebrow">{t({ es: "Asistencia 24/7/365", en: "Assistance 24/7/365" })}</p>
+          <p className="eyebrow text-cyan-500">{t({ es: "Asistencia 24/7/365", en: "Assistance 24/7/365" })}</p>
           <h1 className="h1-hero mx-auto mt-4">{t({ es: "¿Necesitas ayuda ahora?", en: "Need help right now?" })}</h1>
           <p className="lead mx-auto mt-4 max-w-xl text-white/70">
             {t({
@@ -85,7 +85,7 @@ export default function AsistenciaPage() {
             </p>
             <a
               href={CONTACT.whatsappHref}
-              className="mt-3.5 flex items-center justify-center gap-2 rounded-control bg-green-500 py-2.5 font-display text-[13.5px] font-semibold text-white transition-transform hover:-translate-y-0.5"
+              className="mt-3.5 flex items-center justify-center gap-2 rounded-control bg-green-700 py-2.5 font-display text-[13.5px] font-semibold text-white transition-transform hover:-translate-y-0.5"
             >
               {t({ es: "Abrir WhatsApp →", en: "Open WhatsApp →" })}
             </a>

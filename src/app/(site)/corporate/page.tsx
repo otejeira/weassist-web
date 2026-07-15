@@ -3,6 +3,7 @@
 import { Check } from "lucide-react";
 import { useLocale } from "@/lib/i18n/LocaleProvider";
 import { CTAButton } from "@/components/ui/CTAButton";
+import { Reveal } from "@/components/ui/Reveal";
 import { ROUTES } from "@/lib/nav";
 import { HEALTHIER_URL } from "@/lib/constants";
 
@@ -65,7 +66,7 @@ const ECOSYSTEM = [
   {
     name: "Business",
     accent: "#7cc249",
-    nameColor: "#4e8a1f",
+    nameColor: "#3e7d1c",
     href: ROUTES.business,
     external: false,
     description: { es: "Plataforma y soluciones para agentes, agencias y aliados.", en: "Platform and solutions for agents, agencies and partners." },
@@ -96,7 +97,7 @@ export default function CorporatePage() {
           />
         </svg>
         <div className="container-max relative py-16 lg:py-20">
-          <p className="eyebrow">{t({ es: "We Assist Corporativo", en: "We Assist Corporate" })}</p>
+          <p className="eyebrow text-cyan-500">{t({ es: "We Assist Corporativo", en: "We Assist Corporate" })}</p>
           <h1 className="h1-hero mt-4 max-w-3xl">
             {t({ es: "La compañía detrás de la asistencia", en: "The company behind the assistance" })}
           </h1>
@@ -207,14 +208,14 @@ export default function CorporatePage() {
             />
           </figure>
 
-          <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <Reveal className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {REGIONS.map((r) => (
               <div key={r.name.es} className="rounded-[18px] border border-black/[.07] bg-white p-5">
                 <p className="font-display text-[15px] font-bold text-ink-900">{t(r.name)}</p>
                 <p className="mt-1.5 text-[13px] leading-relaxed text-ink-600">{t(r.note)}</p>
               </div>
             ))}
-          </div>
+          </Reveal>
 
           <p className="mt-6 text-[12px] text-ink-500">
             {t({
@@ -236,7 +237,7 @@ export default function CorporatePage() {
               en: "Under the same company, solutions for individuals, companies and commercial partners.",
             })}
           </p>
-          <div className="mt-8 grid gap-4 md:grid-cols-3">
+          <Reveal className="mt-8 grid gap-4 md:grid-cols-3">
             {ECOSYSTEM.map((card) => (
               <a
                 key={card.name}
@@ -248,12 +249,12 @@ export default function CorporatePage() {
               >
                 <p className="font-display text-[17px] font-bold" style={{ color: card.nameColor }}>{card.name}</p>
                 <p className="flex-1 text-[13.5px] leading-relaxed text-ink-600">{t(card.description)}</p>
-                <span className="text-[13.5px] font-semibold" style={{ color: card.accent }}>
+                <span className="text-[13.5px] font-semibold" style={{ color: card.nameColor }}>
                   {t({ es: "Explorar →", en: "Explore →" })}
                 </span>
               </a>
             ))}
-          </div>
+          </Reveal>
 
           {/* CTA */}
           <div className="mt-11 flex flex-col items-start justify-between gap-8 overflow-hidden rounded-[24px] bg-hero-navy p-10 text-white lg:flex-row lg:items-center">

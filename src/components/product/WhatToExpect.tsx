@@ -5,6 +5,7 @@ import { WHAT_TO_EXPECT } from "@/lib/content/product-template";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Icon } from "@/components/ui/Icon";
 import { HexShape } from "@/components/brand/HexWe";
+import { Reveal } from "@/components/ui/Reveal";
 
 /** "¿Qué puedes esperar?" — 3 tarjetas. */
 export function WhatToExpect() {
@@ -17,7 +18,7 @@ export function WhatToExpect() {
           eyebrow={t({ es: "Tranquilidad", en: "Peace of mind" })}
           title={t({ es: "¿Qué puedes esperar de nuestra asistencia?", en: "What can you expect from our assistance?" })}
         />
-        <div className="mt-10 grid gap-4 md:grid-cols-3">
+        <Reveal className="mt-10 grid gap-4 md:grid-cols-3">
           {WHAT_TO_EXPECT.map((card) => (
             <div key={card.title.es} className="rounded-card bg-white p-6 shadow-card">
               <HexShape fill="#7cc249" size={46}>
@@ -27,7 +28,7 @@ export function WhatToExpect() {
               <p className="mt-2 text-[14px] leading-relaxed text-ink-600">{t(card.description)}</p>
             </div>
           ))}
-        </div>
+        </Reveal>
       </div>
     </section>
   );

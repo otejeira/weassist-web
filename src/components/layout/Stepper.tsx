@@ -57,7 +57,7 @@ export function Stepper({ current }: { current: number }) {
               <span
                 className={cn(
                   "text-[11px] font-semibold",
-                  state === "pending" ? "text-ink-300" : "text-ink-900",
+                  state === "pending" ? "text-ink-500" : "text-ink-900",
                 )}
               >
                 {t(step.label)}

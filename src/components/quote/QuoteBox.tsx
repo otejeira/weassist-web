@@ -52,7 +52,7 @@ function Stepper({
         >
           <Minus className="h-3.5 w-3.5" />
         </button>
-        <span className="w-5 text-center text-[15px] font-semibold tabular-nums">{value}</span>
+        <span className="w-5 text-center text-[15px] font-semibold tabular-nums text-ink-900">{value}</span>
         <button
           type="button"
           aria-label={`Más ${label}`}

@@ -18,7 +18,7 @@ export function AlliancesMarquee() {
   return (
     <section aria-label={heading} className="border-b border-line-300 bg-white py-5">
       <div className="container-max flex items-center gap-6">
-        <p className="hidden shrink-0 text-[11px] font-semibold uppercase tracking-[0.14em] text-ink-300 sm:block">
+        <p className="hidden shrink-0 text-[11px] font-semibold uppercase tracking-[0.14em] text-ink-500 sm:block">
           {heading}
         </p>
         <div className="relative flex-1 overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_7%,black_93%,transparent)]">
@@ -32,7 +32,7 @@ export function AlliancesMarquee() {
                 {ALLIANCES.map((name) => (
                   <li
                     key={name}
-                    className="whitespace-nowrap font-display text-[16px] font-semibold text-ink-500/80"
+                    className="whitespace-nowrap font-display text-[16px] font-semibold text-ink-600"
                   >
                     {name}
                   </li>
