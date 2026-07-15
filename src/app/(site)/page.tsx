@@ -11,6 +11,7 @@ import { Accordion } from "@/components/ui/Accordion";
 import { FinalCTA } from "@/components/product/FinalCTA";
 import { CTAButton } from "@/components/ui/CTAButton";
 import { AlliancesMarquee } from "@/components/layout/AlliancesMarquee";
+import { ContrastBlock } from "@/components/brand/ContrastBlock";
 import {
   DIFFERENTIATORS,
   HOME_BENEFITS,
@@ -58,8 +59,8 @@ export default function HomePage() {
             </h1>
             <p className="lead mt-4 max-w-xl text-white/70">
               {t({
-                es: "Cuando compras una asistencia de viaje, compras la promesa de que alguien va a aparecer cuando menos lo esperas. Nosotros sí aparecemos: pagos directos, sin deducibles y soporte humano 24/7/365.",
-                en: "When you buy travel assistance, you buy the promise that someone will show up when you least expect it. We do show up: direct payments, no deductibles and human support 24/7/365.",
+                es: "Un seguro te reembolsa semanas después — si lo aprueban. Una asistencia te resuelve en el momento. Nosotros pagamos directo al proveedor, sin deducibles, con humanos que contestan 24/7/365.",
+                en: "Insurance reimburses you weeks later — if it's approved. Assistance solves it on the spot. We pay the provider directly, no deductibles, with humans who answer 24/7/365.",
               })}
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
@@ -95,6 +96,52 @@ export default function HomePage() {
               <p className="mt-1 text-[13px] leading-snug text-ink-600">{t(stat.label)}</p>
             </div>
           ))}
+        </div>
+      </section>
+
+      {/* Asistencia, no seguro — bloque de contraste (nombra al villano) */}
+      <ContrastBlock />
+
+      {/* Casos reales — prueba antes de la oferta */}
+      <section className="bg-hero-navy text-white section-y">
+        <div className="container-max">
+          <SectionHeading
+            tone="dark"
+            eyebrow={t({ es: "Casos reales", en: "Real cases" })}
+            title={t({ es: "Aquí cuando importó", en: "Here when it mattered" })}
+            description={t({
+              es: "No prometemos confianza. La demostramos. Tres historias reales de clientes — anonimizadas — que definen cómo trabajamos.",
+              en: "We don't promise trust. We prove it. Three real, anonymized client stories that define how we work.",
+            })}
+          />
+          <div className="mt-10 grid gap-4 md:grid-cols-3">
+            {HOME_CASES.map((item) => (
+              <article
+                key={item.badge.es}
+                className="flex flex-col rounded-card border border-white/10 bg-white/[.05] p-7 transition-all hover:-translate-y-1 hover:bg-white/[.09]"
+              >
+                <p className="text-[11px] font-bold uppercase tracking-wide" style={{ color: item.accent }}>
+                  {t(item.badge)}
+                </p>
+                <h3 className="mt-3.5 font-display text-[19px] font-bold leading-snug text-white">
+                  {t(item.title)}
+                </h3>
+                <p className="mt-3.5 flex-1 text-[13.5px] leading-relaxed text-white/70">{t(item.description)}</p>
+                <div className="mt-3.5 flex items-baseline gap-2 border-t border-white/10 pt-3.5">
+                  <span className="font-display text-[24px] font-extrabold" style={{ color: item.accent }}>
+                    {t(item.outcomeStrong)}
+                  </span>
+                  <span className="text-[12.5px] text-white/65">{t(item.outcomeText)}</span>
+                </div>
+              </article>
+            ))}
+          </div>
+          <p className="mt-6 text-[14px] text-white/60">
+            {t({ es: "Buscamos razones para ayudarte, no para negarte.", en: "We look for reasons to help you, not to deny you." })}{" "}
+            <Link href={ROUTES.asistencia} className="font-semibold text-cyan-400 hover:underline">
+              {t({ es: "Conoce más casos →", en: "See more cases →" })}
+            </Link>
+          </p>
         </div>
       </section>
 
@@ -211,49 +258,6 @@ export default function HomePage() {
               ))}
             </ol>
           </div>
-        </div>
-      </section>
-
-      {/* Casos reales */}
-      <section className="bg-hero-navy text-white section-y">
-        <div className="container-max">
-          <SectionHeading
-            tone="dark"
-            eyebrow={t({ es: "Casos reales", en: "Real cases" })}
-            title={t({ es: "Aquí cuando importó", en: "Here when it mattered" })}
-            description={t({
-              es: "No prometemos confianza. La demostramos. Tres historias reales de clientes — anonimizadas — que definen cómo trabajamos.",
-              en: "We don't promise trust. We prove it. Three real, anonymized client stories that define how we work.",
-            })}
-          />
-          <div className="mt-10 grid gap-4 md:grid-cols-3">
-            {HOME_CASES.map((item) => (
-              <article
-                key={item.badge.es}
-                className="flex flex-col rounded-card border border-white/10 bg-white/[.05] p-7 transition-all hover:-translate-y-1 hover:bg-white/[.09]"
-              >
-                <p className="text-[11px] font-bold uppercase tracking-wide" style={{ color: item.accent }}>
-                  {t(item.badge)}
-                </p>
-                <h3 className="mt-3.5 font-display text-[19px] font-bold leading-snug text-white">
-                  {t(item.title)}
-                </h3>
-                <p className="mt-3.5 flex-1 text-[13.5px] leading-relaxed text-white/70">{t(item.description)}</p>
-                <div className="mt-3.5 flex items-baseline gap-2 border-t border-white/10 pt-3.5">
-                  <span className="font-display text-[24px] font-extrabold" style={{ color: item.accent }}>
-                    {t(item.outcomeStrong)}
-                  </span>
-                  <span className="text-[12.5px] text-white/65">{t(item.outcomeText)}</span>
-                </div>
-              </article>
-            ))}
-          </div>
-          <p className="mt-6 text-[14px] text-white/60">
-            {t({ es: "Buscamos razones para ayudarte, no para negarte.", en: "We look for reasons to help you, not to deny you." })}{" "}
-            <Link href={ROUTES.asistencia} className="font-semibold text-cyan-400 hover:underline">
-              {t({ es: "Conoce más casos →", en: "See more cases →" })}
-            </Link>
-          </p>
         </div>
       </section>
 

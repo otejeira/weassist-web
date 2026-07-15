@@ -10,7 +10,7 @@ import { HexShape } from "@/components/brand/HexWe";
 export function AssistanceGrid() {
   const { t } = useLocale();
   return (
-    <section className="section-y">
+    <section id="servicios" className="scroll-mt-24 section-y">
       <div className="container-max">
         <SectionHeading
           align="center"

@@ -28,12 +28,22 @@ export function Header({ activeLine }: { activeLine?: LineOption["id"] }) {
   const [megaOpen, setMegaOpen] = useState(false);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const megaRef = useRef<HTMLDivElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
 
   // El drawer se monta vía portal en <body> para escapar del containing block
   // que crea el backdrop-blur del header (si no, queda atrapado dentro del header).
   useEffect(() => setMounted(true), []);
+
+  // Al bajar, colapsamos la barra utilitaria superior para compactar el header
+  // y mantener el CTA "Cotiza tu plan" siempre a la vista durante el funnel.
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   // Bloquear el scroll del fondo mientras el drawer está abierto.
   useEffect(() => {
@@ -88,8 +98,14 @@ export function Header({ activeLine }: { activeLine?: LineOption["id"] }) {
 
   return (
     <header className="sticky top-0 z-[60] border-b border-black/[.06] bg-white/95 backdrop-blur">
-      {/* Barra superior utilitaria (solo desktop): claim + selector de línea + idioma */}
-      <div className="hidden border-b border-black/[.06] bg-surface-100/70 lg:block">
+      {/* Barra superior utilitaria (solo desktop): claim + selector de línea + idioma.
+          Se colapsa al hacer scroll para compactar el header. */}
+      <div
+        className={cn(
+          "hidden overflow-hidden border-black/[.06] bg-surface-100/70 transition-all duration-300 lg:block",
+          scrolled ? "max-h-0 border-b-0 opacity-0" : "max-h-12 border-b opacity-100",
+        )}
+      >
         <div className="mx-auto flex w-full max-w-[1400px] items-center justify-between gap-4 px-5 py-1.5 sm:px-8 lg:px-10">
           <p className="text-[12px] font-medium text-ink-500">
             {t({
@@ -156,15 +172,20 @@ export function Header({ activeLine }: { activeLine?: LineOption["id"] }) {
           </CTAButton>
         </div>
 
-        {/* Botón menú móvil */}
-        <button
-          type="button"
-          onClick={() => setDrawerOpen(true)}
-          aria-label="Abrir menú"
-          className="rounded-control p-2 text-ink-900 lg:hidden"
-        >
-          <Menu className="h-6 w-6" />
-        </button>
+        {/* Acciones móvil: CTA compacto siempre visible + botón menú */}
+        <div className="flex items-center gap-2 lg:hidden">
+          <CTAButton href={ROUTES.comprarPlanes} size="sm" className="whitespace-nowrap">
+            {t({ es: "Cotizar", en: "Get a quote" })}
+          </CTAButton>
+          <button
+            type="button"
+            onClick={() => setDrawerOpen(true)}
+            aria-label="Abrir menú"
+            className="rounded-control p-2 text-ink-900"
+          >
+            <Menu className="h-6 w-6" />
+          </button>
+        </div>
 
         {/* Mega-menú Productos: centrado bajo el header (no bajo el botón) */}
         {megaOpen && (

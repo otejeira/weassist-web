@@ -325,3 +325,87 @@ export const HOME_CASES: HomeCase[] = [
     outcomeText: l("es parte del producto.", "is part of the product."),
   },
 ];
+
+/** Caso de HOME_CASES que se destaca en cada página de producto (índice en HOME_CASES). */
+export const PRODUCT_CASE_INDEX: Record<string, number> = {
+  travel: 0, // COVID en México
+  "all-ways": 2, // Equipaje en Europa (viajero frecuente)
+  student: 1, // Estudiante en EE.UU.
+  "long-stay": 0, // COVID en México (estadía larga)
+};
+
+export interface ContrastRow {
+  insurance: Localized<string>;
+  weassist: Localized<string>;
+}
+
+export interface ContrastContent {
+  eyebrow: Localized<string>;
+  title: Localized<string>;
+  lead: Localized<string>;
+  insuranceLabel: Localized<string>;
+  weassistLabel: Localized<string>;
+  rows: ContrastRow[];
+  closing: Localized<string>;
+}
+
+/** "Asistencia, no seguro" — bloque de contraste que nombra al villano (el reembolso). */
+export const CONTRAST: ContrastContent = {
+  eyebrow: l("Asistencia, no seguro", "Assistance, not insurance"),
+  title: l(
+    "Un seguro te paga después. Nosotros te resolvemos ahora.",
+    "Insurance pays you later. We solve it now.",
+  ),
+  lead: l(
+    "La diferencia no se ve el día que compras. Se siente el día que algo sale mal, a miles de kilómetros de casa.",
+    "The difference isn't visible the day you buy. You feel it the day something goes wrong, thousands of miles from home.",
+  ),
+  insuranceLabel: l("Seguro tradicional", "Traditional insurance"),
+  weassistLabel: l("We Assist", "We Assist"),
+  rows: [
+    {
+      insurance: l(
+        "Pagas de tu bolsillo en el hospital y guardas cada factura.",
+        "You pay out of pocket at the hospital and keep every receipt.",
+      ),
+      weassist: l(
+        "Pagamos directo al proveedor. Tú no adelantas un solo dólar.",
+        "We pay the provider directly. You don't advance a single dollar.",
+      ),
+    },
+    {
+      insurance: l(
+        "Esperas semanas por un reembolso — si lo aprueban.",
+        "You wait weeks for a reimbursement — if it's approved.",
+      ),
+      weassist: l(
+        "El 98.5% de los casos se resuelven sin reembolso.",
+        "98.5% of cases are resolved without reimbursement.",
+      ),
+    },
+    {
+      insurance: l(
+        "Deducibles y letra chica que reducen lo que recibes.",
+        "Deductibles and fine print that cut what you get.",
+      ),
+      weassist: l(
+        "$0 deducibles, en todos los planes. Sin sorpresas.",
+        "$0 deductibles, on every plan. No surprises.",
+      ),
+    },
+    {
+      insurance: l(
+        "Un formulario, un número de caso y una espera.",
+        "A form, a case number and a wait.",
+      ),
+      weassist: l(
+        "Un humano que contesta 24/7/365 y resuelve en el momento.",
+        "A human who answers 24/7/365 and solves it on the spot.",
+      ),
+    },
+  ],
+  closing: l(
+    "“Aquí cuando importa” no es un eslogan: es cómo decidimos. Somos tus aliados, y resolverte va primero que cualquier otra cosa.",
+    "“Here when it matters” isn't a slogan: it's how we decide. We're your allies, and solving your problem comes before anything else.",
+  ),
+};
