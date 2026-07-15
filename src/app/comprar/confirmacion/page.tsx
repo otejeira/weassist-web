@@ -18,7 +18,7 @@ export default function ConfirmacionPage() {
   const { toast } = useToast();
   const plan = quote.planId ? getPlan(quote.planId) : undefined;
   const { total } = computePrice(quote);
-  const policy = "WA-2026-0001"; // TODO PLACEHOLDER: número real desde el sistema.
+  const voucher = "WA-2026-0001"; // TODO PLACEHOLDER: número real desde el sistema.
 
   return (
     <div className="container-max flex flex-col items-center py-16 text-center">
@@ -34,7 +34,7 @@ export default function ConfirmacionPage() {
       <div className="mt-10 w-full max-w-md rounded-panel border border-black/[.06] bg-white p-6 text-left shadow-elevated">
         <div className="flex items-center justify-between">
           <span className="eyebrow">{t({ es: "Voucher", en: "Voucher" })}</span>
-          <span className="font-mono text-[13px] font-semibold text-blue-700">{policy}</span>
+          <span className="font-mono text-[13px] font-semibold text-blue-700">{voucher}</span>
         </div>
         <dl className="mt-4 flex flex-col gap-2.5 text-[14px]">
           <div className="flex justify-between">

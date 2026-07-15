@@ -16,8 +16,8 @@ export default function BeneficiosPage() {
         eyebrow={{ es: "Beneficios", en: "Benefits" }}
         title={{ es: "Todo lo que We Assist hace por ti", en: "Everything We Assist does for you" }}
         subtitle={{
-          es: "Más que una cobertura: acompañamiento real antes y durante tu viaje. Estos son los beneficios que puedes activar.",
-          en: "More than coverage: real support before and during your trip. These are the benefits you can activate.",
+          es: "Más que un plan: acompañamiento real antes y durante tu viaje. Estos son los beneficios que puedes activar.",
+          en: "More than a plan: real support before and during your trip. These are the benefits you can activate.",
         }}
       />
 

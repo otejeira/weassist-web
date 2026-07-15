@@ -3,7 +3,7 @@ import { type Localized, l } from "@/lib/i18n/locale";
 /**
  * Datos de planes y upgrades (tipados).
  *
- * TODO PLACEHOLDER: precios y topes de cobertura son valores de referencia del handoff.
+ * TODO PLACEHOLDER: precios y topes/montos de asistencia son valores de referencia del handoff.
  * Vendrán del API de cotización real. Mantener aquí hasta conectar el backend.
  */
 
@@ -105,7 +105,7 @@ export function getPlan(id: PlanId): Plan | undefined {
  * Matriz de comparación de beneficios por plan (para la tabla /comprar/comparar).
  * `values` da el valor por plan: `true`/`false` (incluido o no) o un texto localizado.
  *
- * TODO PLACEHOLDER: coberturas de referencia del handoff.
+ * TODO PLACEHOLDER: montos de asistencia de referencia del handoff.
  */
 export interface CompareFeature {
   label: Localized<string>;
@@ -243,7 +243,7 @@ export const UPGRADES: Upgrade[] = [
   {
     id: "pregnancy",
     title: l("Mujer Embarazada", "Pregnant traveler"),
-    description: l("Cobertura ampliada hasta la semana 32.", "Extended coverage up to week 32."),
+    description: l("Asistencia ampliada hasta la semana 32.", "Extended assistance up to week 32."),
     price: 49.5,
     icon: "Baby",
   },

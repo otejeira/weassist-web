@@ -30,10 +30,10 @@ export const DIFFERENTIATORS: Differentiator[] = [
   },
   {
     icon: "ShieldCheck",
-    title: l("Respaldo Lloyd's of London", "Backed by Lloyd's of London"),
+    title: l("Respaldo de Lloyd's of London", "Backed by Lloyd's of London"),
     description: l(
-      "Coverholder de Lloyd's of London, con una capacidad de respaldo de $55B+.",
-      "A Lloyd's of London coverholder, backed by $55B+ in capacity.",
+      "Respaldado por Koris General Insurance Company Limited y ciertos suscriptores de Lloyd's of London, el mercado asegurador con mayor trayectoria del mundo.",
+      "Underwritten by Koris General Insurance Company Limited and certain underwriters at Lloyd's of London, the world's most established insurance market.",
     ),
   },
   {
@@ -128,7 +128,7 @@ export const HOME_PLANS: HomePlan[] = [
   },
   {
     title: l("Long Stay"),
-    description: l("Meses en el exterior con cobertura completa por evento — única en el mercado.", "Months abroad with full per-event coverage — unique in the market."),
+    description: l("Meses en el exterior con asistencia completa por evento — única en el mercado.", "Months abroad with full per-event assistance — unique in the market."),
     price: "$2",
     priceUnit: l("/día por viajero", "/day per traveler"),
     href: ROUTES.longStay,
@@ -157,7 +157,7 @@ export const HOME_STEPS: HomeStep[] = [
     number: "02",
     accent: "#003366",
     title: l("Elige tu plan", "Choose your plan"),
-    description: l("Compara coberturas y agrega upgrades — deportes, preexistencias, cancelación.", "Compare coverage and add upgrades — sports, pre-existing conditions, cancellation."),
+    description: l("Compara beneficios y agrega upgrades — deportes, preexistencias, cancelación.", "Compare benefits and add upgrades — sports, pre-existing conditions, cancellation."),
   },
   {
     number: "03",
@@ -257,8 +257,8 @@ export interface StatItem {
 export const HOME_STATS: StatItem[] = [
   { value: "98.5%", label: l("de los casos con pago directo — no anticipas, no reclamas", "of cases paid directly — no advances, no claims") },
   { value: "$0", label: l("deducibles en todos los productos — cero sorpresas", "deductibles on every product — no surprises") },
-  { value: "Por evento", label: l("en Long Stay cada evento médico activa la cobertura completa", "in Long Stay every medical event triggers full coverage") },
-  { value: "Lloyd's", label: l("coverholder de Lloyd's of London — respaldo de $55B+", "Lloyd's of London coverholder — $55B+ backing") },
+  { value: "Por evento", label: l("en Long Stay cada evento médico activa la asistencia completa", "in Long Stay every medical event triggers full assistance") },
+  { value: "Lloyd's", label: l("respaldo de Lloyd's of London — el mercado asegurador más sólido del mundo", "backed by Lloyd's of London — the world's most trusted insurance market") },
 ];
 
 export interface EcosystemStat {
@@ -273,11 +273,13 @@ export const ECOSYSTEM_STATS: EcosystemStat[] = [
   { value: "+1.5MM", label: l("Proveedores en red global", "Providers in global network") },
   { value: "+200", label: l("Países y territorios", "Countries and territories") },
   { value: "+21", label: l("Centros de contacto", "Contact centers") },
-  { value: "$55B+", label: l("Capacidad de Lloyd's of London", "Lloyd's of London capacity") },
+  { value: "$55B+", label: l("Capacidad del mercado de Lloyd's", "Lloyd's market capacity") },
 ];
 
 export interface HomeCase {
   badge: Localized<string>;
+  /** Nombre de pila del cliente (inventado; los casos son reales, anonimizados por privacidad). */
+  name: string;
   accent: string;
   title: Localized<string>;
   description: Localized<string>;
@@ -290,20 +292,22 @@ export interface HomeCase {
 export const HOME_CASES: HomeCase[] = [
   {
     badge: l("COVID en México", "COVID in Mexico"),
+    name: "María",
     accent: "#7cc249",
     title: l(
       "Cuando la burocracia decía no, buscamos el recibo de peaje.",
       "When bureaucracy said no, we tracked down the toll receipt.",
     ),
     description: l(
-      "Hospitalizada 14 días con dos hijos menores solos en el hotel. Nunca suspendimos la cobertura, cuidamos a los niños y validamos su póliza rastreando un recibo de peaje.",
-      "Hospitalized for 14 days with two young children alone at the hotel. We never suspended coverage, cared for the kids and validated her policy by tracking down a toll receipt.",
+      "Hospitalizada 14 días con dos hijos menores solos en el hotel. Nunca suspendimos la asistencia, cuidamos a los niños y validamos su voucher rastreando un recibo de peaje.",
+      "Hospitalized for 14 days with two young children alone at the hotel. We never suspended assistance, cared for the kids and validated her voucher by tracking down a toll receipt.",
     ),
     outcomeStrong: l("$0", "$0"),
     outcomeText: l("pagados por la cliente", "paid by the client"),
   },
   {
     badge: l("Estudiante en EE.UU.", "Student in the U.S."),
+    name: "Daniel",
     accent: "#10ade4",
     title: l(
       "Fuimos más allá del contrato porque era lo correcto.",
@@ -317,15 +321,16 @@ export const HOME_CASES: HomeCase[] = [
     outcomeText: l("Nosotros decidimos el máximo.", "We decide the maximum."),
   },
   {
-    badge: l("Equipaje en Europa", "Baggage in Europe"),
+    badge: l("Equipaje en Italia", "Baggage in Italy"),
+    name: "Lucía",
     accent: "#7cc249",
     title: l(
       "Cubrimos gastos que técnicamente no correspondían.",
       "We covered expenses that technically didn't apply.",
     ),
     description: l(
-      "Su maleta apareció en otra ciudad. Cubrimos la ropa durante la demora — y también los gastos posteriores, fuera de cobertura, porque las circunstancias lo justificaban.",
-      "Her suitcase turned up in another city. We covered clothing during the delay — and the later out-of-coverage expenses too, because the circumstances justified it.",
+      "Su maleta apareció en otra ciudad. Cubrimos la ropa durante la demora — y también los gastos posteriores, fuera de lo previsto, porque las circunstancias lo justificaban.",
+      "Her suitcase turned up in another city. We covered clothing during the delay — and the later unplanned expenses too, because the circumstances justified it.",
     ),
     outcomeStrong: l("El criterio humano", "Human judgment"),
     outcomeText: l("es parte del producto.", "is part of the product."),
@@ -335,7 +340,7 @@ export const HOME_CASES: HomeCase[] = [
 /** Caso de HOME_CASES que se destaca en cada página de producto (índice en HOME_CASES). */
 export const PRODUCT_CASE_INDEX: Record<string, number> = {
   travel: 0, // COVID en México
-  "all-ways": 2, // Equipaje en Europa (viajero frecuente)
+  "all-ways": 2, // Equipaje en Italia (viajero frecuente)
   student: 1, // Estudiante en EE.UU.
   "long-stay": 0, // COVID en México (estadía larga)
 };

@@ -75,7 +75,7 @@ export const PRODUCT_MENU: ProductMenuItem[] = [
   {
     eyebrow: l("LONG STAY", "LONG STAY"),
     title: l("Long Stay", "Long Stay"),
-    description: l("Meses en el exterior con cobertura completa por evento — única en el mercado.", "Months abroad with full per-event coverage — unique in the market."),
+    description: l("Meses en el exterior con asistencia completa por evento — única en el mercado.", "Months abroad with full per-event assistance — unique in the market."),
     href: ROUTES.longStay,
     accent: "#003366",
   },

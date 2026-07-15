@@ -22,7 +22,7 @@ const FEATURES = [
   },
   {
     title: { es: "Reporte en tiempo real", en: "Real-time reporting" },
-    description: { es: "Panel con tus ventas, pólizas y clientes actualizados al instante.", en: "Dashboard with your sales, policies and clients updated instantly." },
+    description: { es: "Panel con tus ventas, vouchers y clientes actualizados al instante.", en: "Dashboard with your sales, vouchers and clients updated instantly." },
   },
   {
     title: { es: "Comisiones cada viernes", en: "Commissions every Friday" },
@@ -55,7 +55,7 @@ const PLATFORM_SHOTS = [
   {
     src: "/assets/platform/dashboard.png",
     title: { es: "Dashboard", en: "Dashboard" },
-    note: { es: "Ventas, pólizas y clientes en un vistazo.", en: "Sales, policies and clients at a glance." },
+    note: { es: "Ventas, vouchers y clientes en un vistazo.", en: "Sales, vouchers and clients at a glance." },
     rotate: "sm:-rotate-[8deg]",
     z: "z-10",
     shift: "sm:translate-y-2",
@@ -71,7 +71,7 @@ const PLATFORM_SHOTS = [
   {
     src: "/assets/platform/sales-details.png",
     title: { es: "Detalle de venta", en: "Sale details" },
-    note: { es: "Seguimiento de cada póliza y comisión.", en: "Track every policy and commission." },
+    note: { es: "Seguimiento de cada voucher y comisión.", en: "Track every voucher and commission." },
     rotate: "sm:-rotate-[4deg]",
     z: "z-10",
     shift: "sm:translate-y-1",

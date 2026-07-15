@@ -25,7 +25,7 @@ export function ProductPage({ slug }: { slug: ProductSlug }) {
         eyebrow={line.eyebrow}
         title={line.title}
         subtitle={line.subtitle}
-        secondaryLabel={{ es: "Ver qué cubre", en: "See what's covered" }}
+        secondaryLabel={{ es: "Ver qué incluye", en: "See what's included" }}
         secondaryHref="#servicios"
       />
       <AssistanceGrid />

@@ -16,7 +16,7 @@ export default function MejorasPage() {
 
   return (
     <div className="container-max py-8">
-      <h1 className="h2">{t({ es: "Personaliza tu cobertura", en: "Customize your coverage" })}</h1>
+      <h1 className="h2">{t({ es: "Personaliza tu asistencia", en: "Customize your assistance" })}</h1>
       <p className="lead mt-2">
         {t({ es: "Añade mejoras opcionales a cada viajero.", en: "Add optional upgrades to each traveler." })}
       </p>

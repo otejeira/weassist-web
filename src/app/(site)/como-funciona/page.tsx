@@ -22,8 +22,8 @@ const BUY_STEPS = [
     accent: "#003366",
     title: { es: "Elige tu plan", en: "Choose your plan" },
     description: {
-      es: "Compara coberturas y agrega upgrades (preexistencias, deportes, cancelación) a tu medida.",
-      en: "Compare coverage and add upgrades (pre-existing, sports, cancellation) to fit you.",
+      es: "Compara beneficios y agrega upgrades (preexistencias, deportes, cancelación) a tu medida.",
+      en: "Compare benefits and add upgrades (pre-existing, sports, cancellation) to fit you.",
     },
   },
   {

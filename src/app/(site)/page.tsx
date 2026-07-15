@@ -101,6 +101,59 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Respaldo financiero — Koris + Lloyd's (atribución autorizada) */}
+      <section className="border-b border-line-300 bg-white">
+        <div className="container-max section-y">
+          <div className="grid items-center gap-10 lg:grid-cols-[auto_1fr]">
+            <div className="flex shrink-0 items-center justify-center rounded-card border border-line-300 bg-surface-100 px-8 py-7">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/brand/underwritten-koris-lloyds.png"
+                alt={t({
+                  es: "Suscrito por Koris General Insurance Company Limited y ciertos suscriptores de Lloyd's of London",
+                  en: "Underwritten by Koris General Insurance Company Limited and certain underwriters at Lloyd's of London",
+                })}
+                className="h-14 w-auto"
+              />
+            </div>
+            <div>
+              <p className="eyebrow">{t({ es: "Respaldo financiero", en: "Financial backing" })}</p>
+              <h2 className="mt-2 font-display text-[26px] font-bold leading-tight text-navy-900 sm:text-[30px]">
+                {t({
+                  es: "El respaldo del mercado asegurador más sólido del mundo.",
+                  en: "Backed by the world's most trusted insurance market.",
+                })}
+              </h2>
+              <p className="mt-3 max-w-2xl text-[15px] leading-relaxed text-ink-600">
+                {t({
+                  es: "Nuestra asistencia está respaldada por Koris General Insurance Company Limited y ciertos suscriptores de Lloyd's of London — el mercado asegurador con mayor trayectoria y reputación del planeta, con validez mundial. Detrás de cada asistencia hay una estructura financiera calificada entre las más fuertes de la industria.",
+                  en: "Our assistance is underwritten by Koris General Insurance Company Limited and certain underwriters at Lloyd's of London — the world's most established and trusted insurance market, valid worldwide. Behind every assistance is a financial structure rated among the strongest in the industry.",
+                })}
+              </p>
+              <ul className="mt-5 flex flex-wrap items-center gap-2.5">
+                {[
+                  { rating: "A+", agency: "S&P" },
+                  { rating: "AA-", agency: "Fitch" },
+                  { rating: "A", agency: "AM Best" },
+                ].map((r) => (
+                  <li
+                    key={r.agency}
+                    className="flex items-center gap-1.5 rounded-full border border-line-300 bg-surface-100 px-3.5 py-1.5"
+                  >
+                    <Icon name="Award" className="h-4 w-4 text-green-700" />
+                    <span className="text-[13px] font-bold text-navy-900">{r.rating}</span>
+                    <span className="text-[12px] text-ink-500">{r.agency}</span>
+                  </li>
+                ))}
+                <li className="text-[12px] text-ink-500">
+                  {t({ es: "Calificaciones del mercado de Lloyd's", en: "Lloyd's market ratings" })}
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Asistencia, no seguro — bloque de contraste (nombra al villano) */}
       <ContrastBlock />
 
@@ -133,7 +186,13 @@ export default function HomePage() {
                 <p className="px-2 text-[11px] font-bold uppercase tracking-wide" style={{ color: item.accent }}>
                   {t(item.badge)}
                 </p>
-                <h3 className="mt-3.5 px-2 font-display text-[19px] font-bold leading-snug text-white">
+                <p className="mt-2 px-2 text-[13px] font-semibold text-white/90">
+                  {item.name}
+                  <span className="font-normal text-white/45">
+                    {" "}· {t({ es: "cliente real, nombre cambiado por privacidad", en: "real client, name changed for privacy" })}
+                  </span>
+                </p>
+                <h3 className="mt-3 px-2 font-display text-[19px] font-bold leading-snug text-white">
                   {t(item.title)}
                 </h3>
                 <p className="mt-3.5 flex-1 px-2 text-[13.5px] leading-relaxed text-white/70">{t(item.description)}</p>
@@ -152,6 +211,29 @@ export default function HomePage() {
               {t({ es: "Conoce más casos →", en: "See more cases →" })}
             </Link>
           </p>
+
+          {/* Video testimonial — placeholder listo para MP4/embed del cliente */}
+          <div className="mt-14">
+            <div className="mx-auto max-w-3xl text-center">
+              <p className="eyebrow">{t({ es: "En sus palabras", en: "In their words" })}</p>
+              <h3 className="mt-2 font-display text-[24px] font-bold leading-snug text-white sm:text-[28px]">
+                {t({ es: "Escucha a un cliente contar cómo estuvimos ahí.", en: "Hear a client tell how we were there." })}
+              </h3>
+            </div>
+            <div className="mx-auto mt-7 max-w-3xl">
+              <div className="relative flex aspect-video items-center justify-center overflow-hidden rounded-card border border-white/10 bg-white/[.04]">
+                {/* TODO: reemplazar por <video controls> o embed cuando el cliente entregue el MP4 */}
+                <div className="flex flex-col items-center gap-3 text-center">
+                  <span className="flex h-16 w-16 items-center justify-center rounded-full bg-white/10">
+                    <Icon name="Play" className="h-7 w-7 translate-x-0.5 text-white" />
+                  </span>
+                  <p className="text-[13px] font-medium text-white/70">
+                    {t({ es: "Video testimonial próximamente", en: "Client testimonial coming soon" })}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -280,8 +362,8 @@ export default function HomePage() {
               <h2 className="h2 mt-3">{t({ es: "Lo que recibes con We Assist", en: "What you get with We Assist" })}</h2>
               <p className="lead mt-3">
                 {t({
-                  es: "Acompañamiento real, no solo una póliza. Nosotros llamamos al hospital; tú solo te recuperas.",
-                  en: "Real support, not just a policy. We call the hospital; you just recover.",
+                  es: "Acompañamiento real, no solo un voucher. Nosotros llamamos al hospital; tú solo te recuperas.",
+                  en: "Real support, not just a voucher. We call the hospital; you just recover.",
                 })}
               </p>
             </div>

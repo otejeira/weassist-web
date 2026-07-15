@@ -28,22 +28,22 @@ export const LEGAL_SECTIONS: Record<LegalSlug, LegalSection> = {
       {
         heading: l("Objeto del servicio", "Scope of service"),
         body: l(
-          "We Assist presta servicios de asistencia en viaje según el plan contratado y los topes de cobertura vigentes.",
-          "We Assist provides travel assistance services according to the contracted plan and applicable coverage caps.",
+          "We Assist presta servicios de asistencia en viaje según el plan contratado y los montos de asistencia vigentes.",
+          "We Assist provides travel assistance services according to the contracted plan and applicable assistance limits.",
         ),
       },
       {
         heading: l("Vigencia", "Validity"),
         body: l(
-          "La cobertura aplica durante las fechas indicadas al momento de la contratación y para el destino seleccionado.",
-          "Coverage applies during the dates indicated at purchase and for the selected destination.",
+          "La asistencia aplica durante las fechas indicadas al momento de la contratación y para el destino seleccionado.",
+          "Assistance applies during the dates indicated at purchase and for the selected destination.",
         ),
       },
       {
         heading: l("Exclusiones", "Exclusions"),
         body: l(
-          "No se cubren situaciones expresamente excluidas en las condiciones particulares del plan.",
-          "Situations expressly excluded in the plan's particular conditions are not covered.",
+          "Quedan excluidas las situaciones expresamente señaladas en las condiciones particulares del plan.",
+          "Situations expressly listed in the plan's particular conditions are excluded.",
         ),
       },
     ],
@@ -59,8 +59,8 @@ export const LEGAL_SECTIONS: Record<LegalSlug, LegalSection> = {
       {
         heading: l("Datos que recopilamos", "Data we collect"),
         body: l(
-          "Recopilamos los datos necesarios para emitir tu cobertura y prestar asistencia (identidad, contacto, viaje).",
-          "We collect the data needed to issue your coverage and provide assistance (identity, contact, trip).",
+          "Recopilamos los datos necesarios para emitir tu voucher y prestar asistencia (identidad, contacto, viaje).",
+          "We collect the data needed to issue your voucher and provide assistance (identity, contact, trip).",
         ),
       },
       {
@@ -90,8 +90,8 @@ export const LEGAL_SECTIONS: Record<LegalSlug, LegalSection> = {
       {
         heading: l("Cancelación antes del viaje", "Cancellation before travel"),
         body: l(
-          "Puedes cancelar antes de la fecha de inicio de cobertura según los plazos indicados en la contratación.",
-          "You may cancel before the coverage start date within the timeframes indicated at purchase.",
+          "Puedes cancelar antes de la fecha de inicio de la asistencia según los plazos indicados en la contratación.",
+          "You may cancel before the assistance start date within the timeframes indicated at purchase.",
         ),
       },
       {

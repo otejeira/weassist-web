@@ -131,7 +131,7 @@ export default function CorporatePage() {
       <section id="red-global" className="section-y bg-white">
         <div className="container-max">
           <h2 className="h2 max-w-3xl text-ink-900">
-            {t({ es: "Una compañía de asistencia, no solo una póliza", en: "An assistance company, not just a policy" })}
+            {t({ es: "Una compañía de asistencia, no solo un voucher", en: "An assistance company, not just a voucher" })}
           </h2>
           <p className="lead mt-3 max-w-3xl">
             {t({
@@ -219,8 +219,8 @@ export default function CorporatePage() {
 
           <p className="mt-6 text-[12px] text-ink-500">
             {t({
-              es: "Ubicaciones ilustrativas. La cobertura efectiva depende del producto, país y proveedor.",
-              en: "Illustrative locations. Effective coverage depends on product, country and provider.",
+              es: "Ubicaciones ilustrativas. La asistencia efectiva depende del producto, país y proveedor.",
+              en: "Illustrative locations. Effective assistance depends on product, country and provider.",
             })}
           </p>
         </div>

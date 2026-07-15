@@ -99,7 +99,7 @@ export interface Difference {
 /** Sección "Nuestra diferencia · Por qué se siente distinto". */
 export const BENEFIT_DIFFERENCE: Difference[] = [
   {
-    title: l("Acompañamiento, no solo póliza", "Support, not just a policy"),
+    title: l("Acompañamiento, no solo un voucher", "Support, not just a voucher"),
     description: l(
       "Resolvemos y coordinamos en el momento, no solo reembolsamos después.",
       "We solve and coordinate in the moment, not just reimburse afterward.",

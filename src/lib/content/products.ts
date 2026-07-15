@@ -75,8 +75,8 @@ export const PRODUCT_LINES: Record<ProductSlug, ProductLine> = {
     eyebrow: l("Travel · Viajes por día", "Travel · Per-trip"),
     title: l("Un viaje a la vez, hasta 90 días.", "One trip at a time, up to 90 days."),
     subtitle: l(
-      "La asistencia clásica por viaje: eliges fechas y destino, y viajas con 5 niveles de cobertura para escoger — siempre con $0 deducibles y pagos directos.",
-      "The classic per-trip assistance: choose dates and destination, and travel with 5 coverage tiers to pick from — always with $0 deductibles and direct payments.",
+      "La asistencia clásica por viaje: eliges fechas y destino, y viajas con 5 niveles de asistencia para escoger — siempre con $0 deducibles y pagos directos.",
+      "The classic per-trip assistance: choose dates and destination, and travel with 5 assistance tiers to pick from — always with $0 deductibles and direct payments.",
     ),
     href: ROUTES.travel,
     mode: "tiers",
@@ -96,7 +96,7 @@ export const PRODUCT_LINES: Record<ProductSlug, ProductLine> = {
     ),
     href: ROUTES.allWays,
     mode: "annual",
-    // TODO PLACEHOLDER: matriz de precios/coberturas de referencia. La columna de 30 días
+    // TODO PLACEHOLDER: matriz de precios/montos de asistencia de referencia. La columna de 30 días
     // corresponde al sitio actual; 60/90 escalan como estimación hasta conectar el API.
     annualPlans: {
       durations: [
@@ -153,8 +153,8 @@ export const PRODUCT_LINES: Record<ProductSlug, ProductLine> = {
     eyebrow: l("Travel · Student", "Travel · Student"),
     title: l("Tu semestre afuera, cubierto de principio a fin.", "Your semester abroad, covered from start to finish."),
     subtitle: l(
-      "Cobertura continua de 3 a 12 meses para estudiar en el exterior, con el certificado que piden las visas y universidades — y una familia que se entera de todo, al instante.",
-      "Continuous coverage from 3 to 12 months to study abroad, with the certificate visas and universities require — and a family kept informed of everything, instantly.",
+      "Asistencia continua de 3 a 12 meses para estudiar en el exterior, con el certificado que piden las visas y universidades — y una familia que se entera de todo, al instante.",
+      "Continuous assistance from 3 to 12 months to study abroad, with the certificate visas and universities require — and a family kept informed of everything, instantly.",
     ),
     href: ROUTES.student,
     mode: "duration",
@@ -173,8 +173,8 @@ export const PRODUCT_LINES: Record<ProductSlug, ProductLine> = {
     eyebrow: l("Travel · Long Stay", "Travel · Long Stay"),
     title: l("Para los que se quedan más que unas vacaciones.", "For those who stay longer than a vacation."),
     subtitle: l(
-      "Trabajo remoto, asignaciones largas, temporadas fuera de casa. Cobertura continua de 90 a 365 días, renovable desde donde estés.",
-      "Remote work, long assignments, seasons away from home. Continuous coverage from 90 to 365 days, renewable from wherever you are.",
+      "Trabajo remoto, asignaciones largas, temporadas fuera de casa. Asistencia continua de 90 a 365 días, renovable desde donde estés.",
+      "Remote work, long assignments, seasons away from home. Continuous assistance from 90 to 365 days, renewable from wherever you are.",
     ),
     href: ROUTES.longStay,
     mode: "duration",

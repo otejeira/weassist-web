@@ -23,7 +23,7 @@ export const CONTACT = {
   collectCall: "+507 6XXX-XXXX",
   email: "asistencia@weassistgroup.com",
   salesEmail: "info@weassistgroup.com",
-  addressLine: "Dirección de oficina (placeholder)",
+  addressLine: "PH Office One, Calle 58 Este, piso 10, oficina 1005",
   city: "Ciudad de Panamá, Panamá",
 } as const;
 

@@ -192,7 +192,7 @@ export default function AsistenciaPage() {
             <div className="flex items-start gap-3 rounded-[16px] bg-surface-100 px-5 py-5">
               <Info className="mt-0.5 h-[17px] w-[17px] flex-none text-blue-700" aria-hidden="true" />
               <p className="text-[12.5px] leading-relaxed text-ink-500">
-                {t({ es: "¿Dudas sobre coberturas o cómo comprar? Revisa primero las ", en: "Questions about coverage or how to buy? Check the " })}
+                {t({ es: "¿Dudas sobre beneficios o cómo comprar? Revisa primero las ", en: "Questions about benefits or how to buy? Check the " })}
                 <a href={ROUTES.preguntas} className="font-bold text-blue-700 hover:underline">
                   {t({ es: "Preguntas frecuentes", en: "FAQ" })}
                 </a>
