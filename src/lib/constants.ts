@@ -54,7 +54,7 @@ export const ALLIANCES = [
   "deel.",
   "KORIS",
   "AirHelp",
-  "IRIS",
+  "Priority Pass",
 ] as const;
 
 // Códigos promocionales de demostración (mock — el API real los validará).
