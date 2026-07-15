@@ -194,6 +194,11 @@ export function Header({ activeLine }: { activeLine?: LineOption["id"] }) {
               </div>
 
               <nav aria-label={t({ es: "Menú móvil", en: "Mobile menu" })} className="flex flex-col gap-6 px-5 py-6">
+                {/* Ingresar — destacado arriba de todo */}
+                <CTAButton href={ROUTES.ingresar} onClick={() => setDrawerOpen(false)} className="w-full">
+                  {t({ es: "Ingresar a mi cuenta", en: "Log in to my account" })}
+                </CTAButton>
+
                 {/* Productos */}
                 <div className="flex flex-col gap-1.5">
                   <p className="field-label mb-1 text-ink-500">{t({ es: "Productos", en: "Products" })}</p>
@@ -272,13 +277,7 @@ export function Header({ activeLine }: { activeLine?: LineOption["id"] }) {
                 {/* Cuenta + idioma + CTA */}
                 <div className="flex flex-col gap-4 border-t border-black/[.06] pt-5">
                   <div className="flex items-center justify-between">
-                    <Link
-                      href={ROUTES.ingresar}
-                      onClick={() => setDrawerOpen(false)}
-                      className="text-[15px] font-medium text-ink-600 hover:text-blue-700"
-                    >
-                      {t({ es: "Ingresar", en: "Log in" })}
-                    </Link>
+                    <p className="field-label text-ink-500">{t({ es: "Idioma", en: "Language" })}</p>
                     <LanguageToggle />
                   </div>
                   <CTAButton href={ROUTES.comprarPlanes} onClick={() => setDrawerOpen(false)} className="w-full">
