@@ -1,9 +1,11 @@
 "use client";
 
+import Image from "next/image";
 import { Check } from "lucide-react";
 import { useLocale } from "@/lib/i18n/LocaleProvider";
 import { CTAButton } from "@/components/ui/CTAButton";
 import { ROUTES } from "@/lib/nav";
+import { cn } from "@/lib/cn";
 
 const PANEL_STATS = [
   { value: "1 min", label: { es: "Cotización", en: "Quote" }, green: false },
@@ -46,6 +48,34 @@ const DEEL_CHECKS = [
 ];
 
 const CURRENCIES = ["USD", "EUR", "GBP", "MXN", "BRL"];
+
+/** Vistazo del admin interno de agentes — abanico de capturas que se enderezan al hover. */
+const PLATFORM_SHOTS = [
+  {
+    src: "/assets/platform/dashboard.png",
+    title: { es: "Dashboard", en: "Dashboard" },
+    note: { es: "Ventas, pólizas y clientes en un vistazo.", en: "Sales, policies and clients at a glance." },
+    rotate: "sm:-rotate-[8deg]",
+    z: "z-10",
+    shift: "sm:translate-y-2",
+  },
+  {
+    src: "/assets/platform/new-quote.png",
+    title: { es: "Nueva cotización", en: "New quote" },
+    note: { es: "Cotiza y emite en menos de un minuto.", en: "Quote and issue in under a minute." },
+    rotate: "sm:rotate-[3deg]",
+    z: "z-20",
+    shift: "sm:-translate-y-3",
+  },
+  {
+    src: "/assets/platform/sales-details.png",
+    title: { es: "Detalle de venta", en: "Sale details" },
+    note: { es: "Seguimiento de cada póliza y comisión.", en: "Track every policy and commission." },
+    rotate: "sm:-rotate-[4deg]",
+    z: "z-10",
+    shift: "sm:translate-y-1",
+  },
+];
 
 const STEPS = [
   { number: "01", accent: "#003366", title: { es: "Regístrate", en: "Sign up" }, description: { es: "Solicita tu acceso y valida tu perfil comercial con nuestro equipo.", en: "Request access and validate your commercial profile with our team." } },
@@ -134,6 +164,55 @@ export default function BusinessPage() {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Un vistazo por dentro — abanico de capturas del admin */}
+      <section className="section-y overflow-hidden bg-navy-950 text-white">
+        <div className="container-max">
+          <div className="max-w-2xl">
+            <p className="eyebrow">{t({ es: "Por dentro", en: "Inside" })}</p>
+            <h2 className="h2 mt-3 text-white">{t({ es: "Un vistazo a tu portal de agente", en: "A glimpse of your agent portal" })}</h2>
+            <p className="lead mt-3 text-white/70">
+              {t({
+                es: "Así se ve la operación por dentro: cotiza, emite y da seguimiento a cada venta desde un mismo lugar. Pasa el cursor por encima para ver cada pantalla.",
+                en: "This is what the operation looks like inside: quote, issue and track every sale from one place. Hover over each screen to take a closer look.",
+              })}
+            </p>
+          </div>
+
+          <div className="mt-14 flex flex-col items-center justify-center gap-8 sm:mt-16 sm:flex-row sm:gap-0 sm:pb-4">
+            {PLATFORM_SHOTS.map((shot) => (
+              <figure
+                key={shot.src}
+                className={cn(
+                  "group relative w-full max-w-[340px] shrink-0 rounded-[18px] border border-white/10 bg-white/[.04] p-2 shadow-elevated transition-all duration-300 ease-brand sm:w-[300px] sm:[&:not(:first-child)]:-ml-14",
+                  shot.rotate,
+                  shot.z,
+                  shot.shift,
+                  "hover:z-40 hover:rotate-0 hover:shadow-glow sm:hover:-translate-y-2 sm:hover:scale-[1.06]",
+                )}
+              >
+                <div className="relative aspect-[16/10] w-full overflow-hidden rounded-[12px] bg-navy-800">
+                  <Image
+                    src={shot.src}
+                    alt={t(shot.title)}
+                    fill
+                    sizes="(max-width: 640px) 90vw, 300px"
+                    className="object-cover object-top"
+                  />
+                </div>
+                <figcaption className="px-2 pb-1 pt-3">
+                  <p className="font-display text-[14px] font-bold text-white">{t(shot.title)}</p>
+                  <p className="mt-0.5 text-[12px] leading-snug text-white/60">{t(shot.note)}</p>
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+
+          <p className="mt-10 text-center text-[12px] text-white/50">
+            {t({ es: "Capturas ilustrativas del portal de agentes.", en: "Illustrative screenshots of the agent portal." })}
+          </p>
         </div>
       </section>
 
