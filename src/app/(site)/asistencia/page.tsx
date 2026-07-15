@@ -73,7 +73,7 @@ export default function AsistenciaPage() {
 
       {/* Canales (superpuestos sobre el hero) */}
       <section className="bg-surface-100 pb-14">
-        <div className="container-max -mt-24 grid gap-4 md:grid-cols-3">
+        <div className="container-max relative z-10 -mt-24 grid gap-4 md:grid-cols-3">
           <div className="rounded-[18px] border-t-[3px] border-green-500 bg-white p-6 shadow-[0_24px_60px_-18px_rgba(2,26,51,.35)]">
             <span className="grid h-[42px] w-[42px] place-items-center rounded-xl bg-surface-green">
               <MessageCircle className="h-5 w-5 text-green-700" aria-hidden="true" />
