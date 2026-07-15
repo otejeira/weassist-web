@@ -286,7 +286,11 @@ export default function ComoFuncionaPage() {
                 >
                   {step.number}
                 </span>
-                <h3 className="mt-4 font-display text-[16.5px] font-bold text-navy-900">{t(step.title)}</h3>
+                <h3 className="mt-4 font-display text-[16.5px] font-bold text-navy-900">
+                  {t(step.title)
+                    .split(/(triage)/i)
+                    .map((part, i) => (/^triage$/i.test(part) ? <em key={i}>{part}</em> : part))}
+                </h3>
                 <p className="mt-1.5 text-[13.5px] leading-relaxed text-ink-600">{t(step.description)}</p>
               </div>
             ))}
