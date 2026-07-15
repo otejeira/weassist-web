@@ -1,11 +1,12 @@
 "use client";
 
 import Link from "next/link";
+import { createPortal } from "react-dom";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import { ChevronDown, Menu, X } from "lucide-react";
+import { ChevronDown, Menu, X, ExternalLink } from "lucide-react";
 import { useLocale } from "@/lib/i18n/LocaleProvider";
-import { MAIN_NAV, PRODUCT_MENU, ROUTES, type LineOption } from "@/lib/nav";
+import { MAIN_NAV, PRODUCT_MENU, LINE_OPTIONS, ROUTES, type LineOption } from "@/lib/nav";
 import { cn } from "@/lib/cn";
 import { Logo } from "./Logo";
 import { LineSelector } from "./LineSelector";
@@ -26,8 +27,28 @@ export function Header({ activeLine }: { activeLine?: LineOption["id"] }) {
   const pathname = usePathname();
   const [megaOpen, setMegaOpen] = useState(false);
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const megaRef = useRef<HTMLDivElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
+
+  // El drawer se monta vía portal en <body> para escapar del containing block
+  // que crea el backdrop-blur del header (si no, queda atrapado dentro del header).
+  useEffect(() => setMounted(true), []);
+
+  // Bloquear el scroll del fondo mientras el drawer está abierto.
+  useEffect(() => {
+    if (!drawerOpen) return;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    function onKey(e: KeyboardEvent) {
+      if (e.key === "Escape") setDrawerOpen(false);
+    }
+    document.addEventListener("keydown", onKey);
+    return () => {
+      document.body.style.overflow = prev;
+      document.removeEventListener("keydown", onKey);
+    };
+  }, [drawerOpen]);
 
   const productsActive = PRODUCT_ROUTES.some((r) => pathname.startsWith(r));
   // Línea activa derivada de la ruta (Corporate/Business); Travel por defecto.
@@ -143,68 +164,132 @@ export function Header({ activeLine }: { activeLine?: LineOption["id"] }) {
         )}
       </div>
 
-      {/* Drawer móvil */}
-      {drawerOpen && (
-        <div className="fixed inset-0 z-[70] lg:hidden">
-          <div
-            className="absolute inset-0 bg-navy-950/40"
-            onClick={() => setDrawerOpen(false)}
-            aria-hidden="true"
-          />
-          <div className="absolute right-0 top-0 flex h-full w-[min(360px,88vw)] flex-col gap-5 overflow-y-auto bg-white p-6 shadow-elevated">
-            <div className="flex items-center justify-between">
-              <Logo width={104} />
-              <button
-                type="button"
-                onClick={() => setDrawerOpen(false)}
-                aria-label="Cerrar menú"
-                className="rounded-control p-2"
-              >
-                <X className="h-6 w-6" />
-              </button>
-            </div>
-
-            <div className="flex flex-col gap-1">
-              <p className="field-label mb-1">{t({ es: "Productos", en: "Products" })}</p>
-              {PRODUCT_MENU.map((p) => (
-                <Link
-                  key={p.href}
-                  href={p.href}
-                  className="rounded-control px-3 py-2 text-[15px] font-medium text-ink-700 hover:bg-surface-blue"
+      {/* Drawer móvil — portal a <body> para escapar del backdrop-blur del header */}
+      {mounted &&
+        drawerOpen &&
+        createPortal(
+          <div className="fixed inset-0 z-[80] lg:hidden">
+            <div
+              className="absolute inset-0 bg-navy-950/50 backdrop-blur-sm"
+              onClick={() => setDrawerOpen(false)}
+              aria-hidden="true"
+            />
+            <div
+              role="dialog"
+              aria-modal="true"
+              aria-label={t({ es: "Menú", en: "Menu" })}
+              className="absolute right-0 top-0 flex h-full w-[min(360px,90vw)] flex-col overflow-y-auto bg-white shadow-elevated"
+            >
+              {/* Cabecera del drawer */}
+              <div className="sticky top-0 z-10 flex items-center justify-between border-b border-black/[.06] bg-white/95 px-5 py-4 backdrop-blur">
+                <Logo width={112} />
+                <button
+                  type="button"
+                  onClick={() => setDrawerOpen(false)}
+                  aria-label={t({ es: "Cerrar menú", en: "Close menu" })}
+                  className="grid h-10 w-10 place-items-center rounded-control text-ink-600 transition-colors hover:bg-surface-blue hover:text-blue-700"
                 >
-                  {t(p.title)}
-                </Link>
-              ))}
-            </div>
+                  <X className="h-6 w-6" />
+                </button>
+              </div>
 
-            <div className="flex flex-col gap-1 border-t border-black/[.06] pt-4">
-              {MAIN_NAV.map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className="rounded-control px-3 py-2 text-[15px] font-medium text-ink-700 hover:bg-surface-blue"
-                >
-                  {t(item.label)}
-                </Link>
-              ))}
-              <Link
-                href={ROUTES.ingresar}
-                className="rounded-control px-3 py-2 text-[15px] font-medium text-ink-700 hover:bg-surface-blue"
-              >
-                {t({ es: "Ingresar", en: "Log in" })}
-              </Link>
-            </div>
+              <nav aria-label={t({ es: "Menú móvil", en: "Mobile menu" })} className="flex flex-col gap-6 px-5 py-6">
+                {/* Productos */}
+                <div className="flex flex-col gap-1.5">
+                  <p className="field-label mb-1 text-ink-500">{t({ es: "Productos", en: "Products" })}</p>
+                  {PRODUCT_MENU.map((p) => {
+                    const active = pathname.startsWith(p.href);
+                    return (
+                      <Link
+                        key={p.href}
+                        href={p.href}
+                        onClick={() => setDrawerOpen(false)}
+                        aria-current={active ? "page" : undefined}
+                        className={cn(
+                          "flex items-start gap-3 rounded-card px-3 py-2.5 transition-colors",
+                          active ? "bg-surface-blue" : "hover:bg-surface-100",
+                        )}
+                      >
+                        <span
+                          className="mt-1.5 h-2.5 w-2.5 flex-none rounded-full"
+                          style={{ backgroundColor: p.accent }}
+                          aria-hidden="true"
+                        />
+                        <span className="flex flex-col">
+                          <span className={cn("font-display text-[15px] font-semibold", active ? "text-blue-700" : "text-ink-900")}>
+                            {t(p.title)}
+                          </span>
+                          <span className="text-[12.5px] leading-snug text-ink-500">{t(p.description)}</span>
+                        </span>
+                      </Link>
+                    );
+                  })}
+                </div>
 
-            <div className="flex flex-col gap-4 border-t border-black/[.06] pt-4">
-              <LineSelector active={line} />
-              <LanguageToggle />
-              <CTAButton href={ROUTES.comprarPlanes} className="w-full">
-                {t({ es: "Cotiza tu plan →", en: "Get a quote →" })}
-              </CTAButton>
+                {/* Explora */}
+                <div className="flex flex-col gap-1 border-t border-black/[.06] pt-5">
+                  {MAIN_NAV.map((item) => {
+                    const active = pathname === item.href;
+                    return (
+                      <Link
+                        key={item.href}
+                        href={item.href}
+                        onClick={() => setDrawerOpen(false)}
+                        aria-current={active ? "page" : undefined}
+                        className={cn(
+                          "rounded-control px-3 py-2.5 text-[15px] font-medium transition-colors",
+                          active ? "bg-surface-blue text-blue-700" : "text-ink-600 hover:bg-surface-blue hover:text-blue-700",
+                        )}
+                      >
+                        {t(item.label)}
+                      </Link>
+                    );
+                  })}
+                </div>
+
+                {/* Ecosistema We Assist */}
+                <div className="flex flex-col gap-1 border-t border-black/[.06] pt-5">
+                  <p className="field-label mb-1 text-ink-500">{t({ es: "Ecosistema", en: "Ecosystem" })}</p>
+                  {LINE_OPTIONS.map((opt) => {
+                    const active = !opt.external && opt.id === line;
+                    const common = cn(
+                      "flex items-center justify-between rounded-control px-3 py-2.5 text-[15px] font-medium transition-colors",
+                      active ? "bg-surface-blue text-blue-700" : "text-ink-600 hover:bg-surface-blue hover:text-blue-700",
+                    );
+                    return opt.external ? (
+                      <a key={opt.id} href={opt.href} target="_blank" rel="noreferrer" onClick={() => setDrawerOpen(false)} className={common}>
+                        {t(opt.label)}
+                        <ExternalLink className="h-4 w-4 opacity-60" aria-hidden="true" />
+                      </a>
+                    ) : (
+                      <Link key={opt.id} href={opt.href} onClick={() => setDrawerOpen(false)} aria-current={active ? "page" : undefined} className={common}>
+                        {t(opt.label)}
+                      </Link>
+                    );
+                  })}
+                </div>
+
+                {/* Cuenta + idioma + CTA */}
+                <div className="flex flex-col gap-4 border-t border-black/[.06] pt-5">
+                  <div className="flex items-center justify-between">
+                    <Link
+                      href={ROUTES.ingresar}
+                      onClick={() => setDrawerOpen(false)}
+                      className="text-[15px] font-medium text-ink-600 hover:text-blue-700"
+                    >
+                      {t({ es: "Ingresar", en: "Log in" })}
+                    </Link>
+                    <LanguageToggle />
+                  </div>
+                  <CTAButton href={ROUTES.comprarPlanes} onClick={() => setDrawerOpen(false)} className="w-full">
+                    {t({ es: "Cotiza tu plan →", en: "Get a quote →" })}
+                  </CTAButton>
+                </div>
+              </nav>
             </div>
-          </div>
-        </div>
-      )}
+          </div>,
+          document.body,
+        )}
     </header>
   );
 }
