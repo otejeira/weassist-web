@@ -28,7 +28,6 @@ export const FOOTER_COLUMNS: FooterColumn[] = [
       { label: l("Viajes Estudiantiles", "Student travel"), href: ROUTES.student },
       { label: l("Viajes de Larga Estadía", "Long-stay travel"), href: ROUTES.longStay },
       { label: l("Upgrades", "Upgrades"), href: ROUTES.mejoras },
-      { label: l("Comparar planes", "Compare plans"), href: ROUTES.comprarComparar },
     ],
   },
   {
