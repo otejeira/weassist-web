@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { Check } from "lucide-react";
 import { useLocale } from "@/lib/i18n/LocaleProvider";
 import { CTAButton } from "@/components/ui/CTAButton";
@@ -195,16 +194,15 @@ export default function CorporatePage() {
             </p>
           </div>
 
-          {/* TODO PLACEHOLDER: guardar el mapa real en /public/assets/operations-map.png */}
           <figure className="mt-8 overflow-hidden rounded-[24px] border border-black/[.07] bg-white p-4 shadow-card sm:p-8">
-            <Image
-              src="/assets/operations-map.png"
+            {/* SVG con los centros como <circle class="op-dot">; el pulso/flotar y los
+                colores de marca viven dentro del propio SVG (ver public/assets/operations-map.svg). */}
+            <img
+              src="/assets/operations-map.svg"
               alt={t({
                 es: "Mapa mundial con los centros de operación de We Assist",
                 en: "World map showing We Assist operation centers",
               })}
-              width={2000}
-              height={1180}
               className="mx-auto h-auto w-full"
             />
           </figure>
