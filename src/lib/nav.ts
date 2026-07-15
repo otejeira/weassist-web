@@ -32,12 +32,13 @@ export interface NavItem {
   external?: boolean;
 }
 
-/** Nav principal del header. "Productos" abre el mega-menú (sin href directo). */
+/**
+ * Nav principal del header (enlaces directos). "Productos" abre el mega-menú.
+ * Cómo funciona y Preguntas viven en el footer (columna Recursos), no en el header.
+ */
 export const MAIN_NAV: NavItem[] = [
   { label: l("Beneficios", "Benefits"), href: ROUTES.beneficios },
-  { label: l("Cómo funciona", "How it works"), href: ROUTES.como },
   { label: l("Asistencia", "Assistance"), href: ROUTES.asistencia },
-  { label: l("Preguntas", "FAQ"), href: ROUTES.preguntas },
 ];
 
 export interface ProductMenuItem {

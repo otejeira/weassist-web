@@ -10,6 +10,7 @@ import { Icon } from "@/components/ui/Icon";
 import { Accordion } from "@/components/ui/Accordion";
 import { FinalCTA } from "@/components/product/FinalCTA";
 import { CTAButton } from "@/components/ui/CTAButton";
+import { AlliancesMarquee } from "@/components/layout/AlliancesMarquee";
 import {
   DIFFERENTIATORS,
   HOME_BENEFITS,
@@ -81,6 +82,9 @@ export default function HomePage() {
           <QuoteBox />
         </div>
       </section>
+
+      {/* Respaldo y alianzas — cinta animada */}
+      <AlliancesMarquee />
 
       {/* Diferenciadores — banda de estadísticas */}
       <section className="border-b border-line-300 bg-surface-100">

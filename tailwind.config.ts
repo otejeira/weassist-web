@@ -72,6 +72,10 @@ const config: Config = {
       },
       keyframes: {
         dashMove: { to: { strokeDashoffset: "-24" } },
+        marquee: {
+          from: { transform: "translateX(0)" },
+          to: { transform: "translateX(-50%)" },
+        },
         ctaSlide: {
           "0%,100%": { backgroundPosition: "100% 0" },
           "50%": { backgroundPosition: "0% 0" },
@@ -87,6 +91,7 @@ const config: Config = {
       },
       animation: {
         dashMove: "dashMove 2.4s linear infinite",
+        marquee: "marquee 34s linear infinite",
         ctaSlide: "ctaSlide 3.6s ease-in-out infinite",
         toastIn: "toastIn .25s ease",
         pulseDot: "pulseDot 1.8s ease-in-out infinite",

@@ -88,6 +88,23 @@ export function Header({ activeLine }: { activeLine?: LineOption["id"] }) {
 
   return (
     <header className="sticky top-0 z-[60] border-b border-black/[.06] bg-white/95 backdrop-blur">
+      {/* Barra superior utilitaria (solo desktop): claim + selector de línea + idioma */}
+      <div className="hidden border-b border-black/[.06] bg-surface-100/70 lg:block">
+        <div className="mx-auto flex w-full max-w-[1400px] items-center justify-between gap-4 px-5 py-1.5 sm:px-8 lg:px-10">
+          <p className="text-[12px] font-medium text-ink-500">
+            {t({
+              es: "Asistencia 24/7/365 · Pagos directos, $0 deducibles",
+              en: "Assistance 24/7/365 · Direct payments, $0 deductibles",
+            })}
+          </p>
+          <div className="flex items-center gap-3">
+            <LineSelector active={line} />
+            <span className="h-4 w-px bg-black/10" aria-hidden="true" />
+            <LanguageToggle />
+          </div>
+        </div>
+      </div>
+
       <div className="relative mx-auto flex w-full max-w-[1400px] items-center justify-between gap-6 px-5 py-3 sm:px-8 lg:px-10">
         <Logo width={140} className="shrink-0" />
 
@@ -131,12 +148,8 @@ export function Header({ activeLine }: { activeLine?: LineOption["id"] }) {
 
         {/* Acciones derecha desktop */}
         <div className="hidden items-center gap-3 lg:flex">
-          <div className="hidden xl:block">
-            <LineSelector active={line} />
-          </div>
-          <LanguageToggle />
           <Link href={ROUTES.ingresar} className="whitespace-nowrap text-[14px] font-medium text-ink-600 hover:text-blue-700">
-            {t({ es: "Ingresar", en: "Log in" })}
+            {t({ es: "Log-In", en: "Log-In" })}
           </Link>
           <CTAButton href={ROUTES.comprarPlanes} size="sm" className="whitespace-nowrap">
             {t({ es: "Cotiza tu plan →", en: "Get a quote →" })}

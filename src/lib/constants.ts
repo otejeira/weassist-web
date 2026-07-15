@@ -45,6 +45,18 @@ export const CERTS = [
   "Elite Global Doctors",
 ] as const;
 
+// Aliados y respaldos mostrados en la cinta animada del home (marquee).
+// TODO PLACEHOLDER: reemplazar por los logos reales de cada aliado.
+export const ALLIANCES = [
+  "Lloyd's of London",
+  "Elite Global Doctors",
+  "binah.ai",
+  "deel.",
+  "KORIS",
+  "AirHelp",
+  "IRIS",
+] as const;
+
 // Códigos promocionales de demostración (mock — el API real los validará).
 export const PROMO_CODES: Record<string, number> = {
   // porcentaje de descuento sobre el subtotal
